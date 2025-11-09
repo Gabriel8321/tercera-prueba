@@ -1,23 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/Assets/CSS/style.css">
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous"> 
-    <!-- Link de bootstrap-->    
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <!-- Link de bootstrap-->
     <title>Document</title>
 </head>
+
 <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <img src="/Frontend/Assets/imagenes/laptop de logo.jpg" height="75px"> <!-- Logo principal -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a> <!-- Boton 1 que te enviara a la pagina inicial, agregar el link después -->
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"> Ver catalogo </a> <!-- Boton 2 que te enviara al listado de articulos existentes, agregar el link después -->
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false"> Dropdown </a> <!-- ¿Tal vez podriamos mover el boton 2 a el dropdown para permitir multiples formas de observar el catalogo? -->
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#"> Yet another action </a></li> 
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"> Realizar un pedido </a> <!-- Esto podria llevarte a una pagina diferente en la que se le pide al usuario agregar los datos, si no existe, agregar en lista de usuarios, y en ambos casos, agregar la informacion del pedido a realizar -->
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
     <header>
-        <img src="/Frontend/Assets/imagenes/laptop de logo.jpg" alt="Logo" width="150px">
-        <h1>Tienda de productos tecnologicos</h1>
+        <h1>Bienvenidos a nuestra tienda de productos tecnologicos</h1>
     </header>
-    <p>Modificacion de prueba</p>
-    
-    
-    
+
+    <aside>
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-sm-3">
+                    <section id="Sidebar">
+                        <!-- Aqui se agregaran filtros a activar, debajo de el listado, el boton para ejecutar filtros. -->
+                    </section>
+                </div>
+                <div class="col-sm-9">
+                    <section id="Mostrando">
+                        <!-- No estoy seguro que podriamos agregar para la pagina principal, ¿tal vez articulos destacados los cuales se hayan pedido muy recurrentemente? -->
+                    </section>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <p>Modificacion de prueba</p> <!-- ESTE TEXTO APARECERA DEBAJO DE TODO, POR LO QUE EVITEMOS MODIFICAR EN ESTA AREA A MENOS QUE REALICEMOS UN FOOTER AL FINAL DE LA PAGINA -->
+
+    <footer id="footer"> <!-- Actualmente la ID no se esta utilizando en alguna parte, por lo que se podria eliminar sin problemas -->
+
+    </footer>
     <script src="/Assets/JS/script.js"></script>
 </body>
 </html>
