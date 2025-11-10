@@ -60,21 +60,36 @@
                     <section id="Sidebar">
                         <form id="precio">
                             <div class="mb-3">
-                                <label for="precio" class="form-label"> Precio </label>
+                                <label for="precio" class="form-label"><i class="bi bi-currency-dollar"></i> Precio </label>
                                 <input type="text" id="precio" pattern="[0-9]*" inputmode="numeric"/>
                             </div>
                         </form>
                         <!-- Formulario para realizar un filtrado por precio -->
 
                         <form id="signo">
-                            <label for="superior">Menor que</label>
+                            <label for="superior"><i class="bi bi-chevron-left"></i> Menor que</label>
                             <input type="radio" value="menor" id="superior">
 
-                            <label for="inferior">Mayor que</label>
+                            <label for="inferior"><i class="bi bi-chevron-right"></i> Mayor que</label>
                             <input type="radio" value="mayor" id="inferior">
                         </form>
                         <!-- ???? No estoy seguro de si esta correcta la formula en el script junto a la informacion que se otorga en el index, puede que se deba revisar -->
                         <!-- Formulario que permite indicar si el precio debe superar al indicado o ser menor -->
+                        
+                        <!-- ???? ¿Sera mejor esta forma de crear el formulario para indicar si debe ser mayor o menor que? -->
+                        <!--<div class="btn-group" role="group" aria-label="Botones de navegación">
+                            <button type="button" class="btn btn-secondary">
+                            <i class="bi bi-chevron-right"></i>
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary">
+                            <i class="bi bi-chevron-left"></i>
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary">
+                            <i class="bi bi-chevron-double-right"></i>
+                            </button>
+                        </div> -->
+                        
+                        
                         
                         <!-- !!!! Aqui se agregaran filtros a activar, debajo de el listado, el boton para ejecutar filtros. -->
                     </section>
