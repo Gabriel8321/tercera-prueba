@@ -66,7 +66,7 @@ async function renderDataWithFilters(filtros) {
     i=3  // Inicializa en valor de 3 para que en la primera pasada pueda ocurrir la primera "row" de tarjetas al instante en vez de en la cuarta tarjeta
     
     FullData.forEach((Data) => {
-    if ((Data.tipo == filtros[0] || filtros[0] == -1) && (Data.nombre.contains(filtros[1]) || filtros[1] == -1) && ( (Data.precio > filtros[2] && filtros[3] == "superior") || (Data.precio < filtros[2] && filtros[3] == "inferior") ) ){
+    if ((Data.tipo == filtros[0] || filtros[0] == -1) && (Data.nombre.includes(filtros[1]) || filtros[1] == -1) && ( (Data.precio > filtros[2] && filtros[3] == "mayor") || (Data.precio < filtros[2] && filtros[3] == "menor") ) ){
         i+=1
         if (i==4){
             template += `<div class = "row ms-5">`
@@ -126,13 +126,13 @@ function filters(){
     }
 
     
-    if (filtro3.value() > 0){ // !!!! ¿Habra alguna forma de reemplazar espacios con un vacio?
+    if (filtro3.value() > 0){
         filtros.push(filtro3.value)
         filtros.push(filtro4.value) 
     }
     else{
         filtros.push(0)
-        filtros.push("superior")
+        filtros.push("mayor")
     } 
     // Esto es para evitar el caso en el que el usuario coloca como precio 0 o un numero negativo, y al mismo tiempo un inferior que, llevando a un caso en el que no mostrara ningun producto debido a que ningun producto tendra un precio inferior a 0 o negativo
     // Logica del filtro de precio: "Si el valor del producto es superior/inferior al valor indicado en el filtro, mostrar el producto"

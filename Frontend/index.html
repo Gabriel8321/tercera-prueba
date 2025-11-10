@@ -58,6 +58,24 @@
             <div class="row">
                 <div class="col-sm-3">
                     <section id="Sidebar">
+                        <form id="precio">
+                            <div class="mb-3">
+                                <label for="precio" class="form-label"> Precio </label>
+                                <input type="text" id="precio" pattern="[0-9]*" inputmode="numeric"/>
+                            </div>
+                        </form>
+                        <!-- Formulario para realizar un filtrado por precio -->
+
+                        <form id="signo">
+                            <label for="superior">Menor que</label>
+                            <input type="radio" value="menor" id="superior">
+
+                            <label for="inferior">Mayor que</label>
+                            <input type="radio" value="mayor" id="inferior">
+                        </form>
+                        <!-- ???? No estoy seguro de si esta correcta la formula en el script junto a la informacion que se otorga en el index, puede que se deba revisar -->
+                        <!-- Formulario que permite indicar si el precio debe superar al indicado o ser menor -->
+                        
                         <!-- !!!! Aqui se agregaran filtros a activar, debajo de el listado, el boton para ejecutar filtros. -->
                     </section>
                 </div>
