@@ -6,11 +6,11 @@ insert into cliente (rut, nom_c, apell_c, fono_c, direcc) values
 ('55555555-5', 'Luis',   'Ramírez',  '945612378', 'Antofagasta');
 
 insert into producto (codigo_p, nom_p, tipo, precio, imagen_url) values
-('P001', 'Notebook HP',     'Electrónica', 550000, '/tercera-prueba/Frontend/Assets/imagenes/Notebook_HP.png'),
-('P002', 'Mouse Logitech',  'Accesorio',    15000, '/tercera-prueba/Frontend/Assets/imagenes/Mouse_logitech.jpg'),
-('P003', 'Teclado Mecánico','Accesorio',    35000, '/tercera-prueba/Frontend/Assets/imagenes/Teclado_mecanico.jpg'),
-('P004', 'Monitor LG 24"',  'Electrónica', 120000, '/tercera-prueba/Frontend/Assets/imagenes/Monitor_LG_24.jpg'),
-('P005', 'Impresora Epson', 'Oficina',      85000, '/tercera-prueba/Frontend/Assets/imagenes/Impresora_Epson.jpg');
+('P001', 'Notebook HP',     'Electrónica', 550000, 'Assets/IMG/Notebook_HP.png'),
+('P002', 'Mouse Logitech',  'Accesorio',    15000, 'Assets/IMG/Mouse_logitech.jpg'),
+('P003', 'Teclado Mecánico','Accesorio',    35000, 'Assets/IMG/Teclado_mecanico.jpg'),
+('P004', 'Monitor LG 24"',  'Electrónica', 120000, 'Assets/IMG/Monitor_LG_24.jpg'),
+('P005', 'Impresora Epson', 'Oficina',      85000, 'Assets/IMG/Impresora_Epson.jpg');
 
 insert into venta (id_v, cantidad, rut, codigo_p) values
 ('V001', 1, '11111111-1', 'P001'),
