@@ -5,6 +5,7 @@ insert into cliente (rut, nom_c, apell_c, fono_c, direcc) values
 ('44444444-4', 'Ana',    'Martínez', '976543210', 'La Serena'),
 ('55555555-5', 'Luis',   'Ramírez',  '945612378', 'Antofagasta');
 
+-- ???? ¿Agregamos un numero de stock al que realizarle un trigger?
 insert into producto (codigo_p, nom_p, tipo, precio, imagen_url) values
 ('P001', 'Notebook HP',     'Electrónica', 550000, 'Assets/IMG/Notebook_HP.png'),
 ('P002', 'Mouse Logitech',  'Accesorio',    15000, 'Assets/IMG/Mouse_logitech.jpg'),
@@ -18,3 +19,9 @@ insert into venta (id_v, cantidad, rut, codigo_p) values
 ('V003', 1, '33333333-3', 'P004'),
 ('V004', 3, '44444444-4', 'P003'),
 ('V005', 1, '55555555-5', 'P005');
+
+INSERT INTO reseñas (id_r, producto, valoracion, usuario) values
+();
+
+-- !!!! Si vamos a realizar reseñas de productos, faltarian agregar algunas que existan por predeterminado
+-- ???? ¿Y tal vez falten agregar más productos para la pagina? 5 son muy pocos actualmente

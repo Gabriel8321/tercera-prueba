@@ -24,14 +24,17 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a> <!-- Boton 1 que te enviara a la pagina inicial, agregar el link después -->
+                        <a class="nav-link active" aria-current="page" href="#">Inicio</a> <!-- Boton 1 que te enviara a la pagina inicial, agregar el link después -->
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"> Ver catalogo </a> <!-- ???? Boton 2 que te enviara al listado de articulos existentes, agregar el link después -->
+                        <a class="nav-link active" aria-current="page" href="#">Conocenos</a> <!-- Boton 2 que te enviara a una pagina que indica quienes somos, agregar el link después -->
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"> Ver catalogo </a> <!-- ???? Boton 3 que te enviara al listado de articulos existentes, agregar el link después -->
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false"> Dropdown </a> <!-- !!!! ¿Tal vez podriamos mover el boton 2 a el dropdown para permitir multiples formas de observar el catalogo? -->
+                            data-bs-toggle="dropdown" aria-expanded="false"> Dropdown </a> <!-- !!!! ¿Tal vez podriamos mover el boton 3 a el dropdown para permitir multiples formas de observar el catalogo? -->
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="#">Action</a></li>
                             <li><a class="dropdown-item" href="#">Another action</a></li>
@@ -58,10 +61,28 @@
             <div class="row">
                 <div class="col-sm-3">
                     <section id="Sidebar">
+                        <select name="clasificacion_producto" id="tipo">
+                            <option value="-1">- Sin filtro -</option>
+                            <option value="oficina">Oficina</option>
+                            <option value="accesorio">Accesorio</option>
+                            <option value="electronica">Electronica</option>
+                        </select>
+                        <!-- Formulario para realizar un filtrado por tipo de producto utilizando un selector -->
+                        
+                        
+                        <form id="nombre">
+                            <div class="mb-3">
+                                <label for="name">Nombre del producto</label>
+                                <input type="text" id="name"/>
+                            </div>
+                        </form>
+                        <!-- Formulario para realizar un filtrado por nombre -->
+
+
                         <form id="precio">
                             <div class="mb-3">
-                                <label for="precio" class="form-label"><i class="bi bi-currency-dollar"></i> Precio </label>
-                                <input type="text" id="precio" pattern="[0-9]*" inputmode="numeric"/>
+                                <label for="price" class="form-label"><i class="bi bi-currency-dollar"></i> Precio </label>
+                                <input type="text" id="price" pattern="[0-9]*" inputmode="numeric"/>
                             </div>
                         </form>
                         <!-- Formulario para realizar un filtrado por precio -->
@@ -105,8 +126,9 @@
 
     <p>Modificacion de prueba</p> <!-- !!!! ESTE TEXTO APARECERA DEBAJO DE TODO, POR LO QUE EVITEMOS MODIFICAR EN ESTA AREA A MENOS QUE REALICEMOS UN FOOTER AL FINAL DE LA PAGINA -->
 
-    <footer id="footer"> <!-- !!!! Actualmente la ID no se esta utilizando en alguna parte, por lo que se podria eliminar sin problemas -->
+    <footer id="footer"> <!-- !!!! Actualmente la ID no se esta utilizando en alguna parte -->
 
+        <!-- !!!! Posiblemente agregar un contacto (falso) en el footer y tal vez un link que te lleva a una pagina de avisos legales (referente a la privacidad y terminos imaginarios para el servicio)-->
     </footer>
     <script src="/Assets/JS/script.js"></script>
 </body>
