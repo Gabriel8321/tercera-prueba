@@ -29,7 +29,7 @@ pool.connect()
 // --- ENDPOINTS ---
 
 // Obtener todas las monedas
-app.get('/api/monedas', async (req, res) => {
+app.get('/api/producto', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM producto ORDER BY codigo_p DESC');
     res.json(result.rows);

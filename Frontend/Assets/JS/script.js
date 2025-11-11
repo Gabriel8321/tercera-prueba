@@ -1,8 +1,10 @@
+const dataSection = document.getElementById("Mostrando")
+
 // Mostrar los datos sin filtros
 async function renderData() {
     dataSection.innerHTML = ""
     // Esto pedira los datos al servidor del backend, y luego lo convertira en formato json
-    response = await fetch('/api/monedas')
+    response = await fetch('/api/producto')
     FullData = await response.json()
     
     console.log(FullData)
