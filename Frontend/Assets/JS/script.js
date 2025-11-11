@@ -136,5 +136,6 @@ function filters(){
     } 
     // Esto es para evitar el caso en el que el usuario coloca como precio 0 o un numero negativo, y al mismo tiempo un inferior que, llevando a un caso en el que no mostrara ningun producto debido a que ningun producto tendra un precio inferior a 0 o negativo
     // Logica del filtro de precio: "Si el valor del producto es superior/inferior al valor indicado en el filtro, mostrar el producto"
-        renderDataWithFilters(filtros)
+    console.log(filtros)    
+    renderDataWithFilters(filtros)
 }
