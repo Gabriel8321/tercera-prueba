@@ -39,8 +39,8 @@ app.get('/api/producto', async (req, res) => {
   }
 });
 
-// Agregar una moneda
-app.post('/api/monedas', async (req, res) => {
+// Agregar una moneda ??? esto deberiamos quitarlo?
+app.post('/api/producto', async (req, res) => {
   const { nombre, valor } = req.body;
   if (!nombre || !valor) {
     return res.status(400).send('Faltan datos');
