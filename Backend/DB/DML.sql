@@ -15,7 +15,7 @@ insert into producto (codigo_p, nom_p, tipo, precio, imagen_url) values
 ('P006', 'Parlante PC Xtech 2.0', 'Accesorio', 26990, 'Assets/IMG/Parlante_PC_Xtech_2.0.jpg'),
 ('P007', 'Notebook IdeaPad 1 Intel Core', 'Electronica', 609990, 'Assets/IMG/Notebook_IdeaPad1_Intel_Core_i3.jpg'),
 ('P008', 'RAM DDR4 16GB-2666MT/s Dual Rank Modul', 'Componente', 58990, 'Assets/IMG/RAM_DDR4_16GB.jpg'),
-('P009', 'RAM DDR4 8GB 3200MHZ so-dimm', 'Componente', 39990, 'Assets/IMG/RAM_DDR4_16GB.jpg')
+('P009', 'RAM DDR4 8GB 3200MHZ so-dimm', 'Componente', 39990, 'Assets/IMG/RAM_DDR4_16GB.jpg'),
 ('P010', 'Tarjeta madre Intel H610', 'Componente', 72990, 'Assets/IMG/Tarjeta_Madre_Intel_H610.png');
 
 
@@ -27,7 +27,7 @@ insert into venta (id_v, cantidad, rut, codigo_p) values
 ('V005', 1, '55555555-5', 'P005');
 
 INSERT INTO reseñas (id_r, producto, valoracion, usuario) values
-();
+('R001','P001','5','11111111-1');
 
 -- !!!! Si vamos a realizar reseñas de productos, faltarian agregar algunas que existan por predeterminado
 -- ???? ¿Y tal vez falten agregar más productos para la pagina? 5 son muy pocos actualmente
