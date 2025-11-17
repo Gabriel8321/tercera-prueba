@@ -1,4 +1,4 @@
-const dataSection = document.getElementById("Mostrando")
+carro=[]
 
 // Mostrar los datos sin filtros
 async function renderData() {
@@ -140,4 +140,85 @@ function filters(){
     // Logica del filtro de precio: "Si el valor del producto es superior/inferior al valor indicado en el filtro, mostrar el producto"
     console.log(filtros)    
     renderDataWithFilters(filtros)
+}
+
+async function ingresar_carro(carro,producto){ // Parametros: carro = Listado de productos que actualmente lleva el usuario | producto = Valor que se ingresara al listado de carro
+    // !!!! Estoy pensando que dentro de las cards del catalogo, se podria generar una id unica con la que identificar el producto del cual se saca su nombre.
+    if (carro.any(producto) == false){ // Si el producto no se ha agregado anteriormente, agregar al listado de carro. 
+        carro.push(producto) 
+        carro.push(1) 
+    } else { // Si el producto ya existe, identificar su ubicacion en la lista y modificar el numero que representa la cantidad a pedir
+        i = 0
+        carro.foreach((prod) => {
+            if (prod == producto){
+                carro[i+1] = carro[i+1]+1
+            }
+            i+=1
+        })
+        // ???? ¿Agregamos un alert() que exprese que se ha agregado el producto al carro?
+    }
+    return carro
+}
+
+async function mostrar_carro(carro){ // El parametro se obtiene de una variable que se actualiza en la funcion ingresar_carro()
+    dataSection.innerHTML = ""    
+    console.log(carro)
+    let template = "";
+    i=2  // Inicializa en valor de 2 para que en la primera pasada pueda ocurrir la primera "row" de tarjetas al instante en vez de en la tercera tarjeta
+    carro.forEach((Data) => {
+        i+=1
+        if (i==3){
+            template += `<div class = "row ms-5">`
+            i = 0
+        }
+        template += `
+            <div class="col-sm-5 ms-5 me-5 mt-3 ">
+                <div class="card">
+                    <div class="row">
+                        <div class="col">
+                            <img src=${Data.covers.card} width="200px">
+                        </div>
+                        <div class="col">
+                            <div class="card-body">
+                                <h5 class="card-title">${Data.title}</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <p class="card-text"> <i class="bi bi-heart-fill"></i> ${Data.favourite_count}  |  <i class="bi bi-play"></i>  ${Data.play_count}   |  ${Data.status}</p>
+                    </div>
+                </div>
+            </div>
+        `
+        // !!!! El formato/template aun no se ha modificado, asi que no tiene sentido las variables y la forma en que se muestran los datos en las tarjetas
+
+        if (i==2){
+            template+=`</div>`
+        } // Actualmente esta configurado para que haga un listado de 3 columnas -> 1 fila, este "if" permite cerrar con un </div> para el <div class=row> en el lugar correcto
+        })
+    dataSection.innerHTML = template;
+}
+
+
+function realizar_pedido(){
+
+    // ???? ¿Como se logra enviar los datos al backend? ¿O se realiza desde allí con server.js?
+}
+
+
+
+// Hay que verificar si funciona esto. Es para ejecutar alguna funcion al ingresar a la pagina indicada
+const page = window.location.pathname
+console.log(page) 
+
+if (page === "/catalogo.html") {
+    const dataSection = document.getElementById("Mostrando")
+    renderData()    
+} else if (page === "/pedido.html") {
+    const dataSection = document.getElementById("carro")
+    mostrarcarro()
+} else if (page === "/index.html"){
+    const dataSection = document.getElementById("Mostrando")
+    // ???? ¿Que realizaremos en la pagina principal? Nos faltaria decidir sobre esa pagina
 }
