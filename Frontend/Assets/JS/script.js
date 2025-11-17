@@ -142,22 +142,21 @@ function filters(){
     renderDataWithFilters(filtros)
 }
 
-async function ingresar_carro(carro,producto){ // Parametros: carro = Listado de productos que actualmente lleva el usuario | producto = Valor que se ingresara al listado de carro
-    // !!!! Estoy pensando que dentro de las cards del catalogo, se podria generar una id unica con la que identificar el producto del cual se saca su nombre.
-    if (carro.any(producto) == false){ // Si el producto no se ha agregado anteriormente, agregar al listado de carro. 
-        carro.push(producto) 
-        carro.push(1) 
+async function ingresar_carro(producto){ // Parametros: producto = Valor que se ingresara al listado de carro
+    const carro = JSON.parse(localStorage.getItem("carro")) || [] // Esta linea permite cargar el carro actual, para evitar sobreescribir sobre la existente
+    if (carro.find(carro => carro.id == producto.id) == false){ // Si el producto no se ha agregado anteriormente, agregar al listado del carro. 
+        carro.push({id: producto.id, nombre: producto.nombre, cantidad: 1}) 
     } else { // Si el producto ya existe, identificar su ubicacion en la lista y modificar el numero que representa la cantidad a pedir
         i = 0
         carro.foreach((prod) => {
-            if (prod == producto){
+            if (prod.id == producto.id){
                 carro[i+1] = carro[i+1]+1
             }
             i+=1
         })
-        // ???? ¿Agregamos un alert() que exprese que se ha agregado el producto al carro?
+        alert("Se ha agregado su producto en el carro")
     }
-    return carro
+    localStorage.setItem("carro", JSON.stringify(carritoActual))  // Esta linea permite guardar el nuevo carro en un JSON temporal que se almacena localmente. Es para evitar perder los datos al momento de cargar una diferente pagina.
 }
 
 async function mostrar_carro(carro){ // El parametro se obtiene de una variable que se actualiza en la funcion ingresar_carro()
@@ -165,6 +164,7 @@ async function mostrar_carro(carro){ // El parametro se obtiene de una variable 
     console.log(carro)
     let template = "";
     i=2  // Inicializa en valor de 2 para que en la primera pasada pueda ocurrir la primera "row" de tarjetas al instante en vez de en la tercera tarjeta
+    const carro = JSON.parse(localStorage.getItem("carro")) || []
     carro.forEach((Data) => {
         i+=1
         if (i==3){

@@ -39,7 +39,7 @@ app.get('/api/producto', async (req, res) => {
   }
 });
 
-// Agregar una moneda ??? esto deberiamos quitarlo?
+// Agregar una moneda  !!!! Aqui deberiamos modificarlo para que se ejecute el pedido
 app.post('/api/producto', async (req, res) => {
   const { nombre, valor } = req.body;
   if (!nombre || !valor) {
