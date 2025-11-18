@@ -1,32 +1,5 @@
-// Hay que verificar si funciona esto. Es para ejecutar alguna funcion al ingresar a la pagina indicada
-const page = window.location.pathname
-console.log(page) 
-
-if (page === "/catalogo.html") {
-    const dataSection = document.getElementById("Mostrando")
-    renderData()    
-} else if (page === "/pedido.html") {
-    const dataSection = document.getElementById("carro")
-    mostrarcarro()
-    form.addEventListener('submit', async e => {
-        e.preventDefault();
-        const rut = document.getElementById('rut').value;
-        const nombre = document.getElementById('nombre').value;
-        const apellido = document.getElementById('apellido').value;
-    
-        await fetch('/api/', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ rut, nombre, apellido })
-        });
-    
-        form.reset();
-        cargarMonedas(); // refrescar la lista
-      });
-} else if (page === "/index.html"){
-    const dataSection = document.getElementById("Mostrando")
-    // ???? ¿Que realizaremos en la pagina principal? Nos faltaria decidir sobre esa pagina
-}
+const dataSection = document.getElementById("Mostrando")
+const dataSectionBuying = document.getElementById("carro")
 
 // Mostrar los datos sin filtros
 async function renderData() {
@@ -134,31 +107,31 @@ async function renderDataWithFilters(filtros) {
 
 function filters(){
     // !!!! Tal vez sea posible optimizarlo, aunque no estoy seguro de como se podria optimizar
-    filtro1 = document.getElementById("tipo")  
-    filtro2 = document.getElementById("nombre")
-    filtro3 = document.getElementById("precio")
-    filtro4 = document.getElementById("signo")
+    filtro1 = document.getElementById("tipo").value  
+    filtro2 = document.getElementById("nombre").value
+    filtro3 = document.getElementById("precio").value
+    filtro4 = document.getElementById("signo").value
 
     filtros = []
 
     if (filtro1){ // !!!! ¿Tal vez podriamos crear una segunda lista para las categorias? (actualmente solo admite 1 categoria, lo que puede ser muy limitante para el usuario)
-        filtros.push(filtro1.value)
+        filtros.push(filtro1)
     }
     else{
         filtros.push(-1)
     }
 
-    if (filtro2.value.trim() != ""){ // El .trim es para evitar que el usuario pueda entregar un espacio vacio como filtro por nombre
-        filtros.push(filtro2.value)
+    if (filtro2.trim() != ""){ // El .trim es para evitar que el usuario pueda entregar un espacio vacio como filtro por nombre
+        filtros.push(filtro2)
     }
     else{
         filtros.push(-1)
     }
 
     
-    if (filtro3.value() > 0){
-        filtros.push(filtro3.value)
-        filtros.push(filtro4.value) 
+    if (filtro3 > 0){
+        filtros.push(filtro3)
+        filtros.push(filtro4) 
     }
     else{
         filtros.push(0)
@@ -187,9 +160,9 @@ async function ingresar_carro(producto){ // Parametros: producto = Valor que se 
     localStorage.setItem("carro", JSON.stringify(carritoActual))  // Esta linea permite guardar el nuevo carro en un JSON temporal que se almacena localmente. Es para evitar perder los datos al momento de cargar una diferente pagina.
 }
 
-async function mostrar_carro(carro){ // El parametro se obtiene de una variable que se actualiza en la funcion ingresar_carro()
-    dataSection.innerHTML = ""    
-    console.log(carro)
+async function mostrar_carro(){ // El parametro se obtiene de una variable que se actualiza en la funcion ingresar_carro()
+    dataSectionBuying.innerHTML = ""    
+    console.log()
     let template = "";
     i=2  // Inicializa en valor de 2 para que en la primera pasada pueda ocurrir la primera "row" de tarjetas al instante en vez de en la tercera tarjeta
     const carro = JSON.parse(localStorage.getItem("carro")) || []
@@ -225,7 +198,7 @@ async function mostrar_carro(carro){ // El parametro se obtiene de una variable 
             template+=`</div>`
         } // Actualmente esta configurado para que haga un listado de 3 columnas -> 1 fila, este "if" permite cerrar con un </div> para el <div class=row> en el lugar correcto
         })
-    dataSection.innerHTML = template;
+    dataSectionBuying.innerHTML = template;
 }
 
 
@@ -249,6 +222,31 @@ async function verificacion_pedido(){
     }
 }
 
+// Hay que verificar si funciona esto. Es para ejecutar alguna funcion al ingresar a la pagina indicada
+const page = window.location.pathname
+console.log(page) 
 
+if (page === "/catalogo.html") {
+    renderData()    
+} else if (page === "/pedido.html") {
+    mostrarcarro()
+    form.addEventListener('submit', async e => {
+        e.preventDefault();
+        const rut = document.getElementById('rut').value;
+        const nombre = document.getElementById('nombre').value;
+        const apellido = document.getElementById('apellido').value;
+    
+        await fetch('/api/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ rut, nombre, apellido })
+        });
+    
+        form.reset();
+        cargarMonedas(); // refrescar la lista
+      });
+} else if (page === "/index.html"){
+
+}
 
 

@@ -4,11 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <!-- Link de bootstrap-->
+    <link rel="stylesheet" 
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"/>
+    <!-- Este es un link de bootstrap que permite agregar iconos en los textos -->
+    <link rel="stylesheet" href="Assets/CSS/style.css">
+    <!-- Link de CSS fisico -->
 </head>
 <body>
-    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <img src="Assets/img/logo.png" height="75px"> <!-- Logo principal -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Inicio</a> <!-- Boton 1 que te enviara a la pagina inicial, agregar el link después -->
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Conocenos</a> <!-- Boton 2 que te enviara a una pagina que indica quienes somos, agregar el link después -->
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"> Ver catalogo </a> <!-- ???? Boton 3 que te enviara al listado de articulos existentes, agregar el link después -->
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false"> Dropdown </a> <!-- !!!! ¿Tal vez podriamos mover el boton 3 a el dropdown para permitir multiples formas de observar el catalogo? -->
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#"> Yet another action </a></li> 
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="pedido.html" tabindex="-1" aria-disabled="true"> Realizar un pedido </a> <!-- Esto podria llevarte a una pagina diferente en la que se le pide al usuario agregar los datos, si no existe, agregar en lista de usuarios, y en ambos casos, agregar la informacion del pedido a realizar -->
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-        <aside>
+
+    <aside>
         <div class="container text-center">
             <div class="row">
                 <div class="col-sm-2">
@@ -46,7 +87,7 @@
                             <label for="inferior"><i class="bi bi-chevron-right"></i> Mayor que</label>
                             <input type="radio" name="prueba" value="mayor" id="inferior">
                         </form>
-                        <button type="button" class="btn btn-secondary" onclick="Filters()">Buscar</button>
+                        <button type="button" class="btn btn-secondary" onclick="filters()">Buscar</button>
                         <!-- ???? No estoy seguro de si esta correcta la formula en el script junto a la informacion que se otorga en el index, puede que se deba revisar -->
                         <!-- Formulario que permite indicar si el precio debe superar al indicado o ser menor -->
                     </section>
