@@ -58,18 +58,19 @@ async function renderData() {
 // "mayor_o_menor"
 // }], si en la variable se agrega un -1, el programa lo ignorara como atributo para filtrar. La unica excepcion a la regla es en los atributos relacionados al precio
 
-async function renderDataWithFilters(filtros) {
+async function renderDataWithFilters(filtros, tipos) {
     dataSection.innerHTML = ""
     // Esto pedira los datos al servidor del backend, y luego lo convertira en formato json
     response = await fetch('/api/producto')
     FullData = await response.json()
     
     console.log(FullData)
+    console.log(tipos)
     let template = "";
     i=3  // Inicializa en valor de 3 para que en la primera pasada pueda ocurrir la primera "row" de tarjetas al instante en vez de en la cuarta tarjeta
     
     FullData.forEach((Data) => {
-    if ((Data.tipo == filtros[0] || filtros[0] == -1) && (Data.nombre.includes(filtros[1]) || filtros[1] == -1) && ( (Data.precio > filtros[2] && filtros[3] == "mayor") || (Data.precio < filtros[2] && filtros[3] == "menor") ) ){
+    if ((tipos.includes(Data.tipo) || tipos[0] == -1) && (Data.nom_p.includes(filtros[0]) || filtros[0] == -1) && ( (Data.precio > filtros[1] && filtros[2] == "mayor") || (Data.precio < filtros[1] && filtros[2] == "menor") ) ){
         i+=1
         if (i==4){
             template += `<div class = "row ms-5">`
@@ -80,17 +81,17 @@ async function renderDataWithFilters(filtros) {
                 <div class="card">
                     <div class="row">
                         <div class="col">
-                            <img src=${Data.covers.card} width="200px">
+                            <img src=${Data.imagen_url} width="200px">
                         </div>
                         <div class="col">
                             <div class="card-body">
-                                <h5 class="card-title">${Data.title}</h5>
+                                <h5 class="card-title">${Data.nom_p}</h5>
                             </div>
                         </div>
                     </div>
 
                     <div class="row">
-                        <p class="card-text"> <i class="bi bi-heart-fill"></i> ${Data.favourite_count}  |  <i class="bi bi-play"></i>  ${Data.play_count}   |  ${Data.status}</p>
+                        <p class="card-text"> <i class="bi bi-heart-fill"></i> ${Data.nom_p}  |  <i class="bi bi-play"></i>  ${Data.nom_p}   |  ${Data.nom_p}</p>
                     </div>
                 </div>
             </div>
@@ -107,18 +108,19 @@ async function renderDataWithFilters(filtros) {
 
 function filters(){
     // !!!! Tal vez sea posible optimizarlo, aunque no estoy seguro de como se podria optimizar
-    filtro1 = document.getElementById("tipo").value  
-    filtro2 = document.getElementById("nombre").value
-    filtro3 = document.getElementById("precio").value
-    filtro4 = document.getElementById("signo").value
-
+    filtro1 = document.querySelectorAll('#tipos input[type="checkbox"]');  
+    filtro2 = document.getElementById("name").value
+    filtro3 = document.getElementById("price").value
+    filtro4 = document.querySelectorAll('#signo input[type="radio"]');
+    
+    tipos= []
     filtros = []
 
     if (filtro1){ // !!!! ¿Tal vez podriamos crear una segunda lista para las categorias? (actualmente solo admite 1 categoria, lo que puede ser muy limitante para el usuario)
-        filtros.push(filtro1)
+        tipos.push(filtro1)
     }
     else{
-        filtros.push(-1)
+        tipos.push(-1)
     }
 
     if (filtro2.trim() != ""){ // El .trim es para evitar que el usuario pueda entregar un espacio vacio como filtro por nombre
@@ -140,7 +142,7 @@ function filters(){
     // Esto es para evitar el caso en el que el usuario coloca como precio 0 o un numero negativo, y al mismo tiempo un inferior que, llevando a un caso en el que no mostrara ningun producto debido a que ningun producto tendra un precio inferior a 0 o negativo
     // Logica del filtro de precio: "Si el valor del producto es superior/inferior al valor indicado en el filtro, mostrar el producto"
     console.log(filtros)    
-    renderDataWithFilters(filtros)
+    renderDataWithFilters(filtros, tipos)
 }
 
 async function ingresar_carro(producto){ // Parametros: producto = Valor que se ingresara al listado de carro

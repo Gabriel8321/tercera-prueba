@@ -40,7 +40,7 @@ app.get('/api/producto', async (req, res) => {
 });
 
 // Agregar una moneda  !!!! Aqui deberiamos modificarlo para que se ejecute el pedido
-app.post('/api/producto', async (req, res) => {
+app.post('/api/pedido', async (req, res) => {
   const { rut, nombre, apellido } = req.body;
   if (!rut || !nombre || !apellido) {
     return res.status(400).send('Faltan datos');
