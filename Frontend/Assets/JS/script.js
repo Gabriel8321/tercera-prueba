@@ -1,4 +1,32 @@
-carro=[]
+// Hay que verificar si funciona esto. Es para ejecutar alguna funcion al ingresar a la pagina indicada
+const page = window.location.pathname
+console.log(page) 
+
+if (page === "/catalogo.html") {
+    const dataSection = document.getElementById("Mostrando")
+    renderData()    
+} else if (page === "/pedido.html") {
+    const dataSection = document.getElementById("carro")
+    mostrarcarro()
+    form.addEventListener('submit', async e => {
+        e.preventDefault();
+        const rut = document.getElementById('rut').value;
+        const nombre = document.getElementById('nombre').value;
+        const apellido = document.getElementById('apellido').value;
+    
+        await fetch('/api/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ rut, nombre, apellido })
+        });
+    
+        form.reset();
+        cargarMonedas(); // refrescar la lista
+      });
+} else if (page === "/index.html"){
+    const dataSection = document.getElementById("Mostrando")
+    // ???? ¿Que realizaremos en la pagina principal? Nos faltaria decidir sobre esa pagina
+}
 
 // Mostrar los datos sin filtros
 async function renderData() {
@@ -201,39 +229,26 @@ async function mostrar_carro(carro){ // El parametro se obtiene de una variable 
 }
 
 
-function realizar_pedido(){
+async function verificacion_pedido(){
+    const rut = document.getElementById('rut').value
+    const nombre = document.getElementById('nombre').value
+    const apellido = document.getElementById('apellido').value
+    
+    existe = 0
+    const db = await fetch('/api/cliente')
+    db.forEach(user => {
+        if (user.rut == rut && user.nombre == nombre && user.apellido == apellido){
+            existe = 1
+        }        
+    });
+    if (existe == 1){
 
-    // ???? ¿Como se logra enviar los datos al backend? ¿O se realiza desde allí con server.js?
+    }
+    else{
+        alert("No se han encontrado coincidencias")
+    }
 }
 
 
 
-// Hay que verificar si funciona esto. Es para ejecutar alguna funcion al ingresar a la pagina indicada
-const page = window.location.pathname
-console.log(page) 
 
-if (page === "/catalogo.html") {
-    const dataSection = document.getElementById("Mostrando")
-    renderData()    
-} else if (page === "/pedido.html") {
-    const dataSection = document.getElementById("carro")
-    mostrarcarro()
-    form.addEventListener('submit', async e => {
-        e.preventDefault();
-        const rut = document.getElementById('rut').value;
-        const nombre = document.getElementById('nombre').value;
-        const apellido = document.getElementById('apellido').value;
-    
-        await fetch('/api/', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ rut, nombre, apellido })
-        });
-    
-        form.reset();
-        cargarMonedas(); // refrescar la lista
-      });
-} else if (page === "/index.html"){
-    const dataSection = document.getElementById("Mostrando")
-    // ???? ¿Que realizaremos en la pagina principal? Nos faltaria decidir sobre esa pagina
-}
