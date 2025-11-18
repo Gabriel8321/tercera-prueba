@@ -41,13 +41,13 @@ app.get('/api/producto', async (req, res) => {
 
 // Agregar una moneda  !!!! Aqui deberiamos modificarlo para que se ejecute el pedido
 app.post('/api/producto', async (req, res) => {
-  const { nombre, valor } = req.body;
-  if (!nombre || !valor) {
+  const { rut, nombre, apellido } = req.body;
+  if (!rut || !nombre || !apellido) {
     return res.status(400).send('Faltan datos');
   }
 
   try {
-    await pool.query('INSERT INTO monedas (nombre, valor) VALUES ($1, $2)', [nombre, valor]);
+    await pool.query('INSERT INTO producto (nombre, ) VALUES ($1, $2)', [nombre, valor]);
     res.send('Moneda agregada correctamente');
   } catch (err) {
     console.error(err);

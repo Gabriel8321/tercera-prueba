@@ -60,7 +60,7 @@ async function renderData() {
 async function renderDataWithFilters(filtros) {
     dataSection.innerHTML = ""
     // Esto pedira los datos al servidor del backend, y luego lo convertira en formato json
-    response = await fetch('/api/monedas')
+    response = await fetch('/api/producto')
     FullData = await response.json()
     
     console.log(FullData)
@@ -218,6 +218,21 @@ if (page === "/catalogo.html") {
 } else if (page === "/pedido.html") {
     const dataSection = document.getElementById("carro")
     mostrarcarro()
+    form.addEventListener('submit', async e => {
+        e.preventDefault();
+        const rut = document.getElementById('rut').value;
+        const nombre = document.getElementById('nombre').value;
+        const apellido = document.getElementById('apellido').value;
+    
+        await fetch('/api/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ rut, nombre, apellido })
+        });
+    
+        form.reset();
+        cargarMonedas(); // refrescar la lista
+      });
 } else if (page === "/index.html"){
     const dataSection = document.getElementById("Mostrando")
     // ???? ¿Que realizaremos en la pagina principal? Nos faltaria decidir sobre esa pagina
