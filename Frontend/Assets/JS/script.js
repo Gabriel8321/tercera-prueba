@@ -107,8 +107,8 @@ async function renderDataWithFilters(filtros) {
 function filters(){
     // !!!! Tal vez sea posible optimizarlo, aunque no estoy seguro de como se podria optimizar
     filtro1 = document.getElementById("tipo")  
-    filtro2 = document.getElementById("nombre")
-    filtro3 = document.getElementById("precio")
+    filtro2 = document.getElementById("name")
+    filtro3 = document.getElementById("price")
     filtro4 = document.getElementById("signo")
 
     filtros = []
@@ -128,7 +128,7 @@ function filters(){
     }
 
     
-    if (filtro3.value() > 0){
+    if (filtro3.value > 0){
         filtros.push(filtro3.value)
         filtros.push(filtro4.value) 
     }
@@ -164,7 +164,7 @@ async function mostrar_carro(carro){ // El parametro se obtiene de una variable 
     console.log(carro)
     let template = "";
     i=2  // Inicializa en valor de 2 para que en la primera pasada pueda ocurrir la primera "row" de tarjetas al instante en vez de en la tercera tarjeta
-    const carro = JSON.parse(localStorage.getItem("carro")) || []
+    // const carro = JSON.parse(localStorage.getItem("carro")) || []
     carro.forEach((Data) => {
         i+=1
         if (i==3){
