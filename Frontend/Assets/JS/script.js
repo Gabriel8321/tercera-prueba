@@ -19,26 +19,41 @@ async function renderData() {
         i = 0
     }
     template += `
-        <div class="col-sm-5 ms-5 me-5 mt-3 ">
+        <div class="col-sm-5 ms-5 me-5 mt-3">
             <div class="card">
-                <div class="row">
-                    <div class="col">
-                        <img src=${Data.covers.card} width="200px">
-                    </div>
-                    <div class="col">
-                        <div class="card-body">
-                            <h5 class="card-title">${Data.title}</h5>
+                <img src=${Data.imagen_url} class="card-img-top" style="padding:20px">
+                <div class="card-body">
+                    <div class="col-sm-2">
+
+                        <div class="row">
+                            <h2 class="card-title">${Data.nom_p}</h2>
+                        </div>
+                        <div class="row">
+                            <h4 class="card-text">${Data.tipo}</h4>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <p>${Data.stock}</p>
+                            </div>
+                            <div class="col-sm-4">
+                                <h5>${Data.precio}</h5>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="row">
-                    <p class="card-text"> <i class="bi bi-heart-fill"></i> ${Data.favourite_count}  |  <i class="bi bi-play"></i>  ${Data.play_count}   |  ${Data.status}</p>
+                    <div class="col-sm-7">
+                        <div class="row"> <!-- !!!! ¿Realizamos el sistema de reseñas o no al final? -->
+                            <h5>${Data.PLACEHOLDER_valoracion_promedio}</h5>
+                        </div>
+                        <div class="row">
+                            <button type="button" class="btn btn-secondary" onclick"ingresar_carro(${Data.nom_p})">Pedir</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     `
-    // !!!! El formato/template aun no se ha modificado, asi que no tiene sentido las variables y la forma en que se muestran los datos en las tarjetas
+    // !!!! Este es un prototipo que no se ha verificado sus resultados, puede que se deban realizar modificaciones (en especial debido a los nombres de productos, ¿Tal vez usar algun metodo para recortar los nombres que superan una cantidad de caracteres?)
 
     if (i==3){
         template+=`</div>`
@@ -52,7 +67,6 @@ async function renderData() {
 
 // Formato de la variable filtros: 
 // filtros = [{
-// "tipo_producto" 
 // "nombre"
 // "precio" 
 // "mayor_o_menor"
@@ -77,25 +91,40 @@ async function renderDataWithFilters(filtros, tipos) {
             i = 0
         }
         template += `
-            <div class="col-sm-5 ms-5 me-5 mt-3 ">
-                <div class="card">
-                    <div class="row">
-                        <div class="col">
-                            <img src=${Data.imagen_url} width="200px">
+        <div class="col-sm-5 ms-5 me-5 mt-3">
+            <div class="card">
+                <img src=${Data.imagen_url} class="card-img-top" style="padding:20px">
+                <div class="card-body">
+                    <div class="col-sm-2">
+
+                        <div class="row">
+                            <h2 class="card-title">${Data.nom_p}</h2>
                         </div>
-                        <div class="col">
-                            <div class="card-body">
-                                <h5 class="card-title">${Data.nom_p}</h5>
+                        <div class="row">
+                            <h4 class="card-text">${Data.tipo}</h4>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <p>${Data.stock}</p>
+                            </div>
+                            <div class="col-sm-4">
+                                <h5>${Data.precio}</h5>
                             </div>
                         </div>
                     </div>
-
-                    <div class="row">
-                        <p class="card-text"> <i class="bi bi-heart-fill"></i> ${Data.nom_p}  |  <i class="bi bi-play"></i>  ${Data.nom_p}   |  ${Data.nom_p}</p>
+                    <div class="col-sm-7">
+                        <div class="row"> <!-- !!!! ¿Realizamos el sistema de reseñas o no al final? -->
+                            <h5>${Data.PLACEHOLDER_valoracion_promedio}<i class="bi bi-star-fill"></i></h5>
+                        </div>
+                        <div class="row">
+                            <button type="button" class="btn btn-secondary" onclick"ingresar_carro(${Data.nom_p})">Pedir</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        `
+        </div>
+    `
         // !!!! El formato/template aun no se ha modificado, asi que no tienen sentido las variables y la forma en que se muestran los datos en las tarjetas
 
         if (i==3){
@@ -107,20 +136,15 @@ async function renderDataWithFilters(filtros, tipos) {
 
 
 function filters(){
-    // !!!! Tal vez sea posible optimizarlo, aunque no estoy seguro de como se podria optimizar
-
-    filtro1 = document.querySelectorAll('#tipos input[type="checkbox"]');  
+    tipos= []
+    filtros = []
+    
+    filtro1 = document.querySelectorAll('#tipos input[type="checkbox"]:checked').forEach(selected => tipos.push(selected.value));  
     filtro2 = document.getElementById("name").value
     filtro3 = document.getElementById("price").value
     filtro4 = document.querySelectorAll('#signo input[type="radio"]');
     
-    tipos= []
-    filtros = []
-
-    if (filtro1){ // !!!! ¿Tal vez podriamos crear una segunda lista para las categorias? (actualmente solo admite 1 categoria, lo que puede ser muy limitante para el usuario)
-        tipos.push(filtro1)
-    }
-    else{
+    if (length(tipos) == 0){
         tipos.push(-1)
     }
 
