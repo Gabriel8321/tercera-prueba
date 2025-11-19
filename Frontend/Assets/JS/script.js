@@ -172,7 +172,7 @@ function filters(){
 async function ingresar_carro(producto){ // Parametros: producto = Valor que se ingresara al listado de carro
     const carro = JSON.parse(localStorage.getItem("carro")) || [] // Esta linea permite cargar el carro actual, para evitar sobreescribir sobre la existente
     if (carro.find(carro => carro.id == producto.id) == false){ // Si el producto no se ha agregado anteriormente, agregar al listado del carro. 
-        carro.push({id: producto.id, nombre: producto.nombre, cantidad: 1}) 
+        carro.push({id: producto.id, nombre: producto.nom_p, cantidad: 1}) 
     } else { // Si el producto ya existe, identificar su ubicacion en la lista y modificar el numero que representa la cantidad a pedir
         i = 0
         carro.foreach((prod) => {
@@ -227,8 +227,8 @@ async function mostrar_carro(){ // El parametro se obtiene de una variable que s
     dataSectionBuying.innerHTML = template;
 }
 
-
 async function verificacion_pedido(){
+    const carro = JSON.parse(localStorage.getItem("carro")) || []
     const rut = document.getElementById('rut').value
     const nombre = document.getElementById('nombre').value
     const apellido = document.getElementById('apellido').value
@@ -241,7 +241,9 @@ async function verificacion_pedido(){
         }        
     });
     if (existe == 1){
-
+        carro.forEach(pedido => {
+            
+        });
     }
     else{
         alert("No se han encontrado coincidencias")
