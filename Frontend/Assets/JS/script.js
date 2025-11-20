@@ -91,7 +91,7 @@ async function renderDataWithFilters(filtros, tipos) {
             <div class="card">
                 <img src=${Data.imagen_url} class="card-img-top" style="padding:20px">
                 <div class="card-body">
-                    <div class="col-sm-2">
+                    <div class="col-sm-6">
 
                         <div class="row">
                             <h2 class="card-title">${Data.nom_p}</h2>

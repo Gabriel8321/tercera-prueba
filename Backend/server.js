@@ -16,7 +16,7 @@ const pool = new Pool({
   host: 'localhost',
   user: 'postgres',      // cambia si usas otro usuario
   password: 'cft.2025',  // tu contraseña
-  database: 'tecno tienda', // nombre de la base de datos que se usara 
+  database: 'Tecno_tienda', // nombre de la base de datos que se usara 
   port: 5432
 })
 
@@ -40,14 +40,14 @@ app.get('/api/producto', async (req, res) => {
 });
 
 // Agregar una moneda  !!!! Aqui deberiamos modificarlo para que se ejecute el pedido
-app.post('/api/pedido', async (req, res) => {
-  const { rut, nombre, apellido } = req.body;
+app.post('/api/venta', async (req, res) => {
+  const { id_v,  } = req.body;
   if (!rut || !nombre || !apellido) {
     return res.status(400).send('Faltan datos');
   }
 
   try {
-    await pool.query('INSERT INTO producto (nombre, ) VALUES ($1, $2)', [nombre, valor]);
+    await pool.query('INSERT INTO venta (nombre, ) VALUES ($1, $2)', [nombre, valor]);
     res.send('Moneda agregada correctamente');
   } catch (err) {
     console.error(err);
