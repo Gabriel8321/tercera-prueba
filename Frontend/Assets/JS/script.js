@@ -19,7 +19,7 @@ async function renderData() {
         i = 0
     }
     template += `
-        <div class="col-sm-5 ms-5 me-5 mt-3">
+        <div class="col-sm-4 ms-5 me-5 mt-3">
             <div class="card">
                 <img src=${Data.imagen_url} class="card-img-top" style="padding:20px">
                 <div class="card-body">
@@ -88,7 +88,7 @@ async function renderDataWithFilters(filtros, tipos) {
         }
         template += `
         <div class="col-sm-5 ms-5 me-5 mt-3">
-            <div class="card">
+            <div class="card w-50">
                 <img src=${Data.imagen_url} class="card-img-top" style="padding:20px">
                 <div class="card-body">
                     <div class="col-sm-6">
@@ -105,7 +105,7 @@ async function renderDataWithFilters(filtros, tipos) {
                                 <p>${Data.stock}</p>
                             </div>
                             <div class="col-sm-4">
-                                <h5>${Data.precio}</h5>
+                                <h5>$${Data.precio}</h5>
                             </div>
                         </div>
                     </div>
@@ -138,7 +138,7 @@ function filters(){
     filtro3 = document.getElementById("price").value
     filtro4 = document.querySelectorAll('#signo input[type="radio"]');
     
-    if (length(tipos) == 0){
+    if (tipos.length == 0){
         tipos.push(-1)
     }
 
