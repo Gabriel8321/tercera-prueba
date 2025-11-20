@@ -1,5 +1,6 @@
 body{
     margin-top: 110px;
+    margin-left: 40px
 }
 
 .contacto{
@@ -8,4 +9,8 @@ body{
 
 .title_card{
     max-width: 15;
+}
+
+#tipos label{
+    display:block
 }
