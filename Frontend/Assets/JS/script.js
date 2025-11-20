@@ -25,12 +25,10 @@ async function renderData() {
         nombre_producto = Data.nom_p
     }
     template += `
-        <div class="col-lg-3 ms-5 me-5 mt-3 d-flex">
-            <div class="card h-100 tarjetas">
-                <div class="container-fluid text-center h-50">
-                    <img src=${Data.imagen_url} class="card-img-top" style="padding:20px">
-                </div>
-                <div class="card-body h-50">  
+        <div class="col-sm-5 ms-5 me-5 mt-3">
+            <div class="card">
+                <img src=${Data.imagen_url} class="card-img-top" style="padding:20px">
+                <div class="card-body">
                     <div class="row">
                         <h2 class="card-title">${nombre_producto}</h2>
                     </div>
@@ -98,21 +96,26 @@ async function renderDataWithFilters(filtros, tipos) {
             nombre_producto = Data.nom_p
         }
         template += `
-        <div class="col-lg-3 ms-5 me-5 mt-3">
-            <div class="card tarjetas">
+        <div class="col-sm-5 ms-5 me-5 mt-3">
+            <div class="card">
                 <img src=${Data.imagen_url} class="card-img-top" style="padding:20px">
-                <div class="card-body">  
-                
-                    <div class="row">
-                        <h2 class="card-title">${nombre_producto}</h2>
-                    </div>
-                    <div class="row">
-                        <h4 class="card-text">${Data.tipo}</h4>
-                    </div>
-                
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <h5>$${Data.precio}</h5>
+                <div class="card-body">
+                    <div class="col-sm-6">
+
+                        <div class="row">
+                            <h2 class="card-title">${Data.nom_p}</h2>
+                        </div>
+                        <div class="row">
+                            <h4 class="card-text">${Data.tipo}</h4>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <p>${Data.stock}</p>
+                            </div>
+                            <div class="col-sm-4">
+                                <h5>${Data.precio}</h5>
+                            </div>
                         </div>
                     </div>
                     <div class="row">

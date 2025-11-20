@@ -5,7 +5,7 @@ insert into cliente (rut, nom_c, apell_c, fono_c, direcc) values
 ('44444444-4', 'Ana',    'Martínez', '976543210', 'La Serena'),
 ('55555555-5', 'Luis',   'Ramírez',  '945612378', 'Antofagasta');
 
--- ???? ¿Agregamos un numero de stock al que realizarle un trigger?
+
 insert into producto (codigo_p, nom_p, tipo, precio, imagen_url) values
 ('P001', 'Notebook HP',     'Electrónica', 569990, 'Assets/IMG/Notebook_HP.png'),
 ('P002', 'Mouse Logitech',  'Accesorio',    14990, 'Assets/IMG/Mouse_logitech.jpg'),
@@ -19,12 +19,9 @@ insert into producto (codigo_p, nom_p, tipo, precio, imagen_url) values
 ('P010', 'Tarjeta madre Intel H610', 'Componente', 72990, 'Assets/IMG/Tarjeta_Madre_Intel_H610.png');
 
 
-insert into venta (cantidad, rut, codigo_p) values
-(1, '11111111-1', 'P001'),
-(2,  '22222222-2', 'P002'),
-(1, '33333333-3', 'P004'),
-(3, '44444444-4', 'P003'),
-(1, '55555555-5', 'P005');
-
--- !!!! Si vamos a realizar reseñas de productos, faltarian agregar algunas que existan por predeterminado
--- ???? ¿Y tal vez falten agregar más productos para la pagina? 5 son muy pocos actualmente
+insert into venta (cantidad, fecha_compra, rut, codigo_p) values
+(1, '2025-11-20', '11111111-1', 'P001'),
+(2, '2025-07-10',  '22222222-2', 'P002'),
+(1, '2025-10-28', '33333333-3', 'P004'),
+(3, '2025-09-14', '44444444-4', 'P003'),
+(1, '2025-06-11', '55555555-5', 'P005');
