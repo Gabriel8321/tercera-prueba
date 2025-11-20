@@ -16,7 +16,7 @@ const pool = new Pool({
   host: 'localhost',
   user: 'postgres',      // cambia si usas otro usuario
   password: 'cft.2025',  // tu contraseña
-  database: 'tecno tienda', // nombre de la base de datos que se usara 
+  database: 'Tecno_tienda', // nombre de la base de datos que se usara 
   port: 5432
 })
 

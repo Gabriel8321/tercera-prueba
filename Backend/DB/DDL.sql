@@ -1,4 +1,4 @@
-create database Tecno tienda;
+create database Tecno_tienda;
 
 create table cliente (rut varchar(10) primary key not null, nom_c varchar(20),
 apell_c varchar(20), fono_c varchar(10), direcc varchar(20)); 
