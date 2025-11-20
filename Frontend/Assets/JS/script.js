@@ -77,42 +77,46 @@ async function renderDataWithFilters(filtros, tipos) {
     console.log(FullData)
     console.log(tipos)
     let template = "";
-    i=3  // Inicializa en valor de 3 para que en la primera pasada pueda ocurrir la primera "row" de tarjetas al instante en vez de en la cuarta tarjeta
+    i=2  // Inicializa en valor de 3 para que en la primera pasada pueda ocurrir la primera "row" de tarjetas al instante en vez de en la cuarta tarjeta
+    limite_caracter = 26;
     
     FullData.forEach((Data) => {
     if ((tipos.includes(Data.tipo) || tipos[0] == -1) && (Data.nom_p.includes(filtros[0]) || filtros[0] == -1) && ( (Data.precio > filtros[1] && filtros[2] == "mayor") || (Data.precio < filtros[1] && filtros[2] == "menor") ) ){
         i+=1
-        if (i==4){
+        if (i==3){
             template += `<div class = "row ms-5">`
             i = 0
         }
+        if (Data.nom_p.length > limite_caracter) {
+            nombre_producto = Data.nom_p.substring(0, limite_caracter) + "...";
+        }
+        else{
+            nombre_producto = Data.nom_p
+        }
         template += `
-        <div class="col-sm-5 ms-5 me-5 mt-3">
-            <div class="card">
+        <div class="col-lg-3 ms-5 me-5 mt-3">
+            <div class="card tarjetas">
                 <img src=${Data.imagen_url} class="card-img-top" style="padding:20px">
-                <div class="card-body">
-                    <div class="col-sm-6">
-
-                        <div class="row">
-                            <h2 class="card-title">${Data.nom_p}</h2>
-                        </div>
-                        <div class="row">
-                            <h4 class="card-text">${Data.tipo}</h4>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-sm-2">
-                                <p>${Data.stock}</p>
-                            </div>
-                            <div class="col-sm-4">
-                                <h5>${Data.precio}</h5>
-                            </div>
+                <div class="card-body">  
+                
+                    <div class="row">
+                        <h2 class="card-title">${nombre_producto}</h2>
+                    </div>
+                    <div class="row">
+                        <h4 class="card-text">${Data.tipo}</h4>
+                    </div>
+                
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h5>$${Data.precio}</h5>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-5"></div>
+                        <div class="col-sm-5">
+                            <p>${Data.stock}</p>
+                        </div>
                         <div class="col-sm-7">
-                            <button type="button" class="btn btn-secondary" onclick"ingresar_carro(${Data.nom_p})">Pedir</button>
+                            <button type="button" class="btn btn-secondary" onclick='ingresar_carro("${Data.nom_p}")'>Pedir</button>
                         </div>
                     </div>
                 </div>
@@ -121,7 +125,7 @@ async function renderDataWithFilters(filtros, tipos) {
     `
         // !!!! El formato/template aun no se ha modificado, asi que no tienen sentido las variables y la forma en que se muestran los datos en las tarjetas
 
-        if (i==3){
+        if (i==2){
             template+=`</div>`
         } // Actualmente esta configurado para que haga un listado de 4 columnas -> 1 fila, este "if" permite cerrar con un </div> para el <div class=row> en el lugar correcto
     }})
@@ -138,7 +142,7 @@ function filters(){
     filtro3 = document.getElementById("price").value
     filtro4 = document.querySelectorAll('#signo input[type="radio"]');
     
-    if (length(tipos) == 0){
+    if (tipos.length == 0){
         tipos.push(-1)
     }
 
