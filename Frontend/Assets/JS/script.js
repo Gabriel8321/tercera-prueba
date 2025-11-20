@@ -23,29 +23,25 @@ async function renderData() {
             <div class="card">
                 <img src=${Data.imagen_url} class="card-img-top" style="padding:20px">
                 <div class="card-body">
-                    <div class="col-sm-2">
-
-                        <div class="row">
-                            <h2 class="card-title">${Data.nom_p}</h2>
-                        </div>
-                        <div class="row">
-                            <h4 class="card-text">${Data.tipo}</h4>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-sm-2">
-                                <p>${Data.stock}</p>
-                            </div>
-                            <div class="col-sm-4">
-                                <h5>${Data.precio}</h5>
-                            </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h3 class="card-title title_card">${Data.nom_p}</h2>
                         </div>
                     </div>
-                    <div class="col-sm-7">
-                        <div class="row"> <!-- !!!! ¿Realizamos el sistema de reseñas o no al final? -->
-                            <h5>${Data.PLACEHOLDER_valoracion_promedio}</h5>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h4 class="card-text">${Data.tipo}</h4>
                         </div>
-                        <div class="row">
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-2">
+                                <p>${Data.stock}</p>
+                        </div>
+                        <div class="col-sm-4">
+                            <h5>${Data.precio}</h5>
+                        </div>
+                        <div class="col-sm-3">
                             <button type="button" class="btn btn-secondary" onclick"ingresar_carro(${Data.nom_p})">Pedir</button>
                         </div>
                     </div>
@@ -113,8 +109,9 @@ async function renderDataWithFilters(filtros, tipos) {
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-5">
-                        <div class="row">
+                    <div class="row">
+                        <div class="col-sm-5"></div>
+                        <div class="col-sm-7">
                             <button type="button" class="btn btn-secondary" onclick"ingresar_carro(${Data.nom_p})">Pedir</button>
                         </div>
                     </div>

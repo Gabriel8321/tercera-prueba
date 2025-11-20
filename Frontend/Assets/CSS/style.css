@@ -5,3 +5,7 @@ body{
 .contacto{
     color: blue;
 }
+
+.title_card{
+    max-width: 15;
+}
