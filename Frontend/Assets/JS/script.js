@@ -10,48 +10,52 @@ async function renderData() {
     
     console.log(FullData)
     let template = "";
-    i=3  // Inicializa en valor de 3 para que en la primera pasada pueda ocurrir la primera "row" de tarjetas al instante en vez de en la cuarta tarjeta
-    
+    i=2  // Inicializa en valor de 3 para que en la primera pasada pueda ocurrir la primera "row" de tarjetas al instante en vez de en la cuarta tarjeta
+    limite_caracter = 26;
     FullData.forEach((Data) => {
     i+=1
-    if (i==4){
+    if (i==3){
         template += `<div class = "row ms-5">`
         i = 0
     }
+    if (Data.nom_p.length > limite_caracter) {
+        nombre_producto = Data.nom_p.substring(0, limite_caracter) + "...";
+    }
+    else{
+        nombre_producto = Data.nom_p
+    }
     template += `
-        <div class="col-sm-5 ms-5 me-5 mt-3">
-            <div class="card">
-                <img src=${Data.imagen_url} class="card-img-top" style="padding:20px">
-                <div class="card-body">
+        <div class="col-lg-3 ms-5 me-5 mt-3 d-flex">
+            <div class="card h-100 tarjetas">
+                <div class="container-fluid text-center h-50">
+                    <img src=${Data.imagen_url} class="card-img-top" style="padding:20px">
+                </div>
+                <div class="card-body h-50">  
+                    <div class="row">
+                        <h2 class="card-title">${nombre_producto}</h2>
+                    </div>
+                    <div class="row">
+                        <h4 class="card-text">${Data.tipo}</h4>
+                    </div>
+                
                     <div class="row">
                         <div class="col-sm-6">
-                            <h3 class="card-title title_card">${Data.nom_p}</h2>
+                            <h5>$${Data.precio}</h5>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-6">
-                            <h4 class="card-text">${Data.tipo}</h4>
+                        <div class="col-sm-5">
+                            <p>${Data.stock}</p>
                         </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-sm-2">
-                                <p>${Data.stock}</p>
-                        </div>
-                        <div class="col-sm-4">
-                            <h5>${Data.precio}</h5>
-                        </div>
-                        <div class="col-sm-3">
-                            <button type="button" class="btn btn-secondary" onclick"ingresar_carro(${Data.nom_p})">Pedir</button>
+                        <div class="col-sm-7">
+                            <button type="button" class="btn btn-secondary  ingreso_carro" onclick='ingresar_carro("${Data.nom_p}")'>Pedir</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     `
-    // !!!! Este es un prototipo que no se ha verificado sus resultados, puede que se deban realizar modificaciones (en especial debido a los nombres de productos, ¿Tal vez usar algun metodo para recortar los nombres que superan una cantidad de caracteres?)
-
-    if (i==3){
+    if (i==2){
         template+=`</div>`
     } // Actualmente esta configurado para que haga un listado de 4 columnas -> 1 fila, este "if" permite cerrar con un </div> para el <div class=row> en el lugar correcto
     })
@@ -123,8 +127,6 @@ async function renderDataWithFilters(filtros, tipos) {
             </div>
         </div>
     `
-        // !!!! El formato/template aun no se ha modificado, asi que no tienen sentido las variables y la forma en que se muestran los datos en las tarjetas
-
         if (i==2){
             template+=`</div>`
         } // Actualmente esta configurado para que haga un listado de 4 columnas -> 1 fila, este "if" permite cerrar con un </div> para el <div class=row> en el lugar correcto
@@ -272,7 +274,7 @@ if (page === "/catalogo.html") {
         cargarMonedas(); // refrescar la lista
       });
 } else if (page === "/index.html"){
-
+    renderData()
 }
 
 

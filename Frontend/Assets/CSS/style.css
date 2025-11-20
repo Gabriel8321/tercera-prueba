@@ -7,10 +7,14 @@ body{
     color: blue;
 }
 
-.title_card{
-    max-width: 15;
+.card-title{
+    margin-bottom: 30px;
 }
 
 #tipos label{
     display:block
+}
+
+.ingreso_carro{
+    float: right;
 }
