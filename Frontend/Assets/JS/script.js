@@ -1,5 +1,4 @@
 const dataSection = document.getElementById("Mostrando")
-const dataSectionBuying = document.getElementById("carro")
 
 // Mostrar los datos sin filtros. Activado al ingresar al catalogo
 async function renderData() {
@@ -27,7 +26,7 @@ async function renderData() {
     template += `
         <div class="col-sm-5 ms-5 me-5 mt-3">
             <div class="card">
-                <img src=${Data.imagen_url} class="card-img-top" style="padding:20px">
+                <img src="${Data.imagen_url}" class="card-img-top" style="padding:20px">
                 <div class="card-body">
                     <div class="row">
                         <h2 class="card-title">${nombre_producto}</h2>
@@ -43,7 +42,7 @@ async function renderData() {
                     </div>
                     <div class="row">
                         <div class="col-sm-5">
-                            <p>${Data.stock}</p>
+                            <p>${Data.stock} restantes</p>
                         </div>
                         <div class="col-sm-7">
                             <button type="button" class="btn btn-secondary  ingreso_carro" onclick='ingresar_carro("${Data.nom_p}")'>Pedir</button>
@@ -98,7 +97,7 @@ async function renderDataWithFilters(filtros, tipos) {
         template += `
         <div class="col-sm-5 ms-5 me-5 mt-3">
             <div class="card">
-                <img src=${Data.imagen_url} class="card-img-top" style="padding:20px">
+                <img src="${Data.imagen_url}" class="card-img-top" style="padding:20px">
                 <div class="card-body">
                     <div class="col-sm-6">
 
@@ -110,9 +109,6 @@ async function renderDataWithFilters(filtros, tipos) {
                         </div>
 
                         <div class="row">
-                            <div class="col-sm-2">
-                                <p>${Data.stock}</p>
-                            </div>
                             <div class="col-sm-4">
                                 <h5>${Data.precio}</h5>
                             </div>
@@ -120,7 +116,7 @@ async function renderDataWithFilters(filtros, tipos) {
                     </div>
                     <div class="row">
                         <div class="col-sm-5">
-                            <p>${Data.stock}</p>
+                            <p>${Data.stock} restantes</p>
                         </div>
                         <div class="col-sm-7">
                             <button type="button" class="btn btn-secondary" onclick='ingresar_carro("${Data.nom_p}")'>Pedir</button>
@@ -169,7 +165,7 @@ async function renderDataTop() {
                 template += `
                     <div class="col-sm-5 ms-5 me-5 mt-3">
                         <div class="card">
-                            <img src=${Data.imagen_url} class="card-img-top" style="padding:20px">
+                            <img src="${Data.imagen_url}" class="card-img-top" style="padding:20px">
                             <div class="card-body">
                                 <div class="col-sm-6">
 
@@ -181,9 +177,6 @@ async function renderDataTop() {
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-sm-2">
-                                            <p>${Data.stock}</p>
-                                        </div>
                                         <div class="col-sm-4">
                                             <h5>${Data.precio}</h5>
                                         </div>
@@ -191,7 +184,7 @@ async function renderDataTop() {
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-5">
-                                        <p>${Data.stock}</p>
+                                        <p>${Data.stock} restantes</p>
                                     </div>
                                     <div class="col-sm-7">
                                         <button type="button" class="btn btn-secondary" onclick='ingresar_carro("${Data.nom_p}")'>Pedir</button>
@@ -337,7 +330,7 @@ async function ingresar_carro(producto){ // Parametros: producto = Valor que se 
 }
 
 async function mostrar_carro(){
-    dataSectionBuying.innerHTML = ""    
+    dataSection.innerHTML = ""    
     console.log()
     let template = "";
     i=2  // Inicializa en valor de 2 para que en la primera pasada pueda ocurrir la primera "row" de tarjetas al instante en vez de en la tercera tarjeta
@@ -351,7 +344,7 @@ async function mostrar_carro(){
         template += `
         <div class="col-sm-5 ms-5 me-5 mt-3">
             <div class="card">
-                <img src=${Data.imagen_url} class="card-img-top" style="padding:20px">
+                <img src="${Data.imagen_url}" class="card-img-top" style="padding:20px">
                 <div class="card-body">
                     <div class="col-sm-6">
 
@@ -364,7 +357,7 @@ async function mostrar_carro(){
 
                         <div class="row">
                             <div class="col-sm-2">
-                                <p>${Data.stock}</p>
+                                <p>${Data.stock} restantes</p>
                             </div>
                             <div class="col-sm-4">
                                 <h5>${Data.precio}</h5>
@@ -372,9 +365,6 @@ async function mostrar_carro(){
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-5">
-                            <p>${Data.stock}</p>
-                        </div>
                         <div class="col-sm-7">
                             <button type="button" class="btn btn-secondary" onclick='ingresar_carro("${Data.nom_p}")'>Pedir</button>
                         </div>
@@ -387,7 +377,7 @@ async function mostrar_carro(){
             template+=`</div>`
         } // Actualmente esta configurado para que haga un listado de 3 columnas -> 1 fila, este "if" permite cerrar con un </div> para el <div class=row> en el lugar correcto
         })
-    dataSectionBuying.innerHTML = template;
+    dataSection.innerHTML = template;
 }
 
 
