@@ -47,25 +47,19 @@ insert into venta (cantidad, fecha_compra, rut, codigo_p) values
 
 select stock from producto;
 
--- Procedimiento que aplica descuento 
+-- Procedimiento que cambia precio 
 
-create or replace procedure agregar_descuento(id_v_param serial)
-returns DECIMAL as $$
-
-declare
-  total decimal;
-  descuento decimal;
+create or replace procedure cambiar_precio(p_codigo_p varchar, p_new_precio numeric)
+language plpgsql as $$
 
 begin
-  select sum(p.precio * v.cantidad)
-  into subtotal
-  from venta v
-  join producto p on p.codigo_p = v.codigo_p
-  where v.id_v = id_v_param;
-
-  descuento := subtotal * 0.2;
-  return descuento;
+    update producto
+    set precio = p_new_precio
+   	where codigo_p = p_codigo_p;
 end;
-$$ language plpgsql;
+$$;
 
-call agregar_descuento()
+-- Para probar el procedimiento 
+call cambiar_precio('P002', 3000);
+
+select codigo_p, nom_p, precio from producto;
