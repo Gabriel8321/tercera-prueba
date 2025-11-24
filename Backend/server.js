@@ -28,7 +28,7 @@ pool.connect()
 
 // --- ENDPOINTS ---
 // Obtener todos los usuarios
-app.get('/api/monedas', async (req, res) => {
+app.get('/api/cliente', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM cliente ORDER BY rut DESC');
     res.json(result.rows);
@@ -53,6 +53,17 @@ app.get('/api/producto', async (req, res) => {
 app.get('/api/venta', async (req, res) => {
   try {
     const result = await pool.query('SELECT sum(cantidad), codigo_p FROM venta GROUP BY codigo_p ORDER BY sum(cantidad) DESC');
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error al consultar la base de datos');
+  }
+});
+
+// Obtener facturas
+app.get('/api/vista_compras', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM producto ORDER BY fecha_compra DESC');
     res.json(result.rows);
   } catch (err) {
     console.error(err);

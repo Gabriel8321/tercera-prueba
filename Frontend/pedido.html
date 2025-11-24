@@ -44,7 +44,7 @@
                 <div class="col-sm-2">
                     <div class="mb-3">
                         <label for="rut">Rut</label>
-                        <input type="number" id="id" required>
+                        <input type="text" id="rut" pattern="\d{7,8}-[Kk]" inputmode="numeric" value="" required />
                     </div>
                 </div>
 
@@ -68,11 +68,17 @@
 
 
     <!-- Aqui se mostrara lo que actualmente tiene el usuario para comprar, incluyendo su cantidad y precio total. Se mostrara por medio de cards dentro del script -->
-    <section id="mostrando">
+    <section id="Mostrando">
         <!-- Se realizara una funcion que generara las cards al momento de cargar la pagina. Falta crear la funcion (**Recordatorio: Utiliza una ID diferente al resto de paginas**) -->
     </section>
-
     <button onclick="realizar_pedido()">Realizar pedido</button>
+    <footer id="footer"> 
+        <section>
+            <p id="contacto">Contacto: 📞 +56989127764</p>
+            <p class="footer-text">Terminos y condiciones</p>
+            <a class="footer-text">Boletas y facturas</a>
+        </section>
+    </footer>
     <script src="Assets/JS/script.js"></script>
 </body>
 </html>
