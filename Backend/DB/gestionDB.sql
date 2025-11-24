@@ -47,18 +47,25 @@ insert into venta (cantidad, fecha_compra, rut, codigo_p) values
 
 select stock from producto;
 
--- Procedimiento simple para aumentar precio (no se me ocurria nada mas)
+-- Procedimiento que aplica descuento 
 
-create or replace procedure Aumentar_precio(porcentaje int)
-language plpgsql
-as $$
+create or replace procedure agregar_descuento(id_v_param serial)
+returns DECIMAL as $$
+
+declare
+  total decimal;
+  descuento decimal;
 
 begin
-    UPDATE producto
-    SET precio = precio * (1 + porcentaje/100)
-	where precio is not null;
-END;
-$$;
+  select sum(p.precio * v.cantidad)
+  into subtotal
+  from venta v
+  join producto p on p.codigo_p = v.codigo_p
+  where v.id_v = id_v_param;
 
-select nom_p, precio from producto;
-call Aumentar_precio(10);
+  descuento := subtotal * 0.2;
+  return descuento;
+end;
+$$ language plpgsql;
+
+call agregar_descuento()

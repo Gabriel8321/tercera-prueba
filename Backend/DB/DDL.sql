@@ -8,7 +8,7 @@ tipo varchar(20), precio numeric(10), stock int, imagen_url VARCHAR);
 
 
 
-create table venta (id_v serial primary key not null, cantidad int not null,
+create table venta (id_v serial primary key not null, cantidad int not null, fecha_compra date, 
 rut varchar(10) not null, codigo_p varchar(10) not null,
 foreign key (rut) references cliente(rut),
 foreign key (codigo_p) references producto(codigo_p));
