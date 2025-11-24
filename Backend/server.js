@@ -73,13 +73,13 @@ app.get('/api/vista_compras', async (req, res) => {
 
 // Realizar una compra
 app.post('/api/venta', async (req, res) => {
-  const { cantidad, rut, codigo_p } = req.body;
-  if (!cantidad || !rut || !codigo_p) {
+  const { cantidad, fecha_compra, rut, codigo_p } = req.body;
+  if (!cantidad || !fecha_compra || !rut || !codigo_p) {
     return res.status(400).send('Faltan datos');
   }
 
   try {
-    await pool.query('INSERT INTO venta (cantidad, fecha_compra, rut, codigo_p ) VALUES (value1, CURRENT_DATE, value3, value4)', [cantidad, rut, codigo_p]);
+    await pool.query('INSERT INTO venta (cantidad, fecha_compra, rut, codigo_p ) VALUES (value1, CURRENT_DATE, value3, value4)', [cantidad, fecha_compra, rut, codigo_p]);
     res.send('compra realizada');
   } catch (err) {
     console.error(err);
