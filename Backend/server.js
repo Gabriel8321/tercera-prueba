@@ -27,8 +27,18 @@ pool.connect()
   .catch(err => console.error('❌ Error de conexión:', err));
 
 // --- ENDPOINTS ---
+// Obtener todos los usuarios
+app.get('/api/monedas', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM cliente ORDER BY rut DESC');
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error al consultar la base de datos');
+  }
+});
 
-// Obtener todas las monedas
+// Obtener todos los productos
 app.get('/api/producto', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM producto ORDER BY codigo_p DESC');
@@ -39,15 +49,26 @@ app.get('/api/producto', async (req, res) => {
   }
 });
 
-// Agregar una moneda  !!!! Aqui deberiamos modificarlo para que se ejecute el pedido
+// Obtener cantidad de compras de cada producto
+app.get('/api/venta', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT sum(cantidad), codigo_p FROM venta GROUP BY codigo_p ORDER BY sum(cantidad) DESC');
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error al consultar la base de datos');
+  }
+});
+
+// Realizar una compra
 app.post('/api/venta', async (req, res) => {
-  const { cantidad, fecha_compra, rut, codigo_p } = req.body;
-  if (!cantidad || !fecha_compra || !rut || !codigo_p) {
+  const { cantidad, rut, codigo_p } = req.body;
+  if (!cantidad || !rut || !codigo_p) {
     return res.status(400).send('Faltan datos');
   }
 
   try {
-    await pool.query('INSERT INTO venta (cantidad, fecha_compra, rut, codigo_p ) VALUES (value1, value2, value3, value4)', [cantidad, fecha_compra, rut, codigo_p]);
+    await pool.query('INSERT INTO venta (cantidad, fecha_compra, rut, codigo_p ) VALUES (value1, CURRENT_DATE, value3, value4)', [cantidad, rut, codigo_p]);
     res.send('compra realizada');
   } catch (err) {
     console.error(err);
