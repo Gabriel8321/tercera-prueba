@@ -30,7 +30,7 @@
                         <a class="nav-link disabled" aria-current="page" href="#">Conocenos</a> <!-- Boton 2 que te enviara a una pagina que indica quienes somos, no posee link debido a que no creamos la pagina por falta de tiempo -->
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"> Ver catalogo </a> <!-- Boton 3 que te enviara al listado de articulos existentes, agregar el link después -->
+                        <a class="nav-link" href="catalogo.html"> Ver catalogo </a> <!-- Boton 3 que te enviara al listado de articulos existentes, agregar el link después -->
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="pedido.html" tabindex="-1" aria-disabled="true"> Realizar un pedido </a> <!-- Boton 4 que te llevara a una pagina en la que se podra completar el pedido, rellenando los datos del usuario que efectuara la compra -->
@@ -43,61 +43,11 @@
     <header>
         <h1>Bienvenidos a nuestra tienda de productos tecnologicos</h1>
     </header>
-
-    <aside>
-        <div class="row">
-            <div class="col-sm-2">
-                <section id="Sidebar">
-                    <!-- Formulario para realizar un filtrado por tipo de producto utilizando un selector -->
-                    <section id="tipos">
-                        <label><input type="checkbox" value="Oficina">Oficina</label>
-                        <label><input type="checkbox" value="Accesorio">Accesorios</label>
-                        <label><input type="checkbox" value="Electronica">Electronica</label>
-                        <label><input type="checkbox" value="Componente">Componentes para pc</label>
-                    </section>
-                    
-                    
-                    <!-- Formulario para realizar un filtrado por nombre -->
-                    <form id="nombre">
-                        <div class="mb-3">
-                            <label for="name">Nombre del producto</label>
-                            <input type="text" id="name"/>
-                        </div>
-                    </form>
-
-
-                    <!-- Formulario para realizar un filtrado por precio -->
-                    <form id="precio">
-                        <div class="mb-3">
-                            <label for="price" class="form-label"><i class="bi bi-currency-dollar"></i> Precio </label>
-                            <input type="text" id="price" pattern="[0-9]*" inputmode="numeric" value=""/>
-                        </div>
-                    </form>
-
-                    <!-- Formulario que permite indicar si el precio debe superar al indicado o ser menor -->
-                    <div class="container-fluid text-center">
-                    <form id="signo">
-                        <label for="superior"><i class="bi bi-chevron-left"></i> Menor que</label>
-                        <input type="radio" name="prueba" value="menor" id="superior">
-
-                        <label for="inferior"><i class="bi bi-chevron-right"></i> Mayor que</label>
-                        <input type="radio" name="prueba" value="mayor" id="inferior">
-                    </form>
-                        <button type="button" class="btn btn-secondary" onclick="filters()">Buscar</button>
-                    </div>                    
-                </section>
-            </div>
-            <div class="col-sm-9">
-                <section id="Mostrando">
-                    <!-- !!!! Realizar una vista en la que se mostraran los 3 articulos que más se compraron -->
-                </section>
-            </div>
-        </div>
-    </aside>
-
-    <footer id="footer"> <!-- !!!! Actualmente la ID no se esta utilizando en alguna parte -->
-        <p class="contacto">contacto: 📞 +56989127764</p>
-        <!-- !!!! Posiblemente agregar un link que te lleva a una pagina de avisos legales (referente a la privacidad y terminos de uso (podriamos utilizar como referencia uno de una tienda verdadera?) para el servicio)-->
+        <section id="Mostrando">
+            <!-- Aqui se mostraran los tres productos más comprados -->
+        </section>
+    <footer id="footer"> 
+        <p id="contacto">contacto: 📞 +56989127764</p>
     </footer>
     <script src="Assets/JS/script.js"></script>
 </body>

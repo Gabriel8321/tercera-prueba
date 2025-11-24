@@ -1,7 +1,7 @@
 const dataSection = document.getElementById("Mostrando")
 const dataSectionBuying = document.getElementById("carro")
 
-// Mostrar los datos sin filtros
+// Mostrar los datos sin filtros. Activado al ingresar al catalogo
 async function renderData() {
     dataSection.innerHTML = ""
     // Esto pedira los datos al servidor del backend, y luego lo convertira en formato json
@@ -341,7 +341,7 @@ async function mostrar_carro(){
     console.log()
     let template = "";
     i=2  // Inicializa en valor de 2 para que en la primera pasada pueda ocurrir la primera "row" de tarjetas al instante en vez de en la tercera tarjeta
-    // const carro = JSON.parse(localStorage.getItem("carro")) || []
+    const carro = JSON.parse(localStorage.getItem("carro")) || []
     carro.forEach((Data) => {
         i+=1
         if (i==3){
@@ -390,28 +390,6 @@ async function mostrar_carro(){
     dataSectionBuying.innerHTML = template;
 }
 
-// async function verificacion_pedido(){
-//     const carro = JSON.parse(localStorage.getItem("carro")) || []
-//     const rut = document.getElementById('rut').value
-//     const nombre = document.getElementById('nombre').value
-//     const apellido = document.getElementById('apellido').value
-    
-//     existe = 0
-//     const db = await fetch('/api/cliente')
-//     db.forEach(user => {
-//         if (user.rut == rut && user.nombre == nombre && user.apellido == apellido){
-//             existe = 1
-//         }        
-//     });
-//     if (existe == 1){
-//         carro.forEach(pedido => {
-            
-//         });
-//     }
-//     else{
-//         alert("No se han encontrado coincidencias")
-//     }
-// }
 
 // Agregar un nuevo pedido
 const form = document.getElementById('datos_usuario')
@@ -445,7 +423,7 @@ form.addEventListener('submit', async e => {
     }
 })
 
-// !!!! Hay que verificar si funciona esto. Es para ejecutar alguna funcion al ingresar a la pagina indicada
+// Ejecutar funciones especificas por ingreso de pagina.
 const page = window.location.pathname
 console.log(page) 
 
