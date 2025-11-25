@@ -326,6 +326,10 @@ async function ingresar_carro(producto){ // Parametros: producto = Valor que se 
     }
     localStorage.setItem("carro", JSON.stringify(carro));
     console.log(carro)
+    const page = window.location.pathname
+    if (page == '/pedido.html'){
+        mostrar_carro()
+    }
 }
 
 async function eliminar_carro(producto){
@@ -337,6 +341,7 @@ async function eliminar_carro(producto){
         carro[index].cantidad -=1
     }
     localStorage.setItem("carro", JSON.stringify(carro))
+    mostrar_carro()
 }
 
 async function mostrar_carro(){
