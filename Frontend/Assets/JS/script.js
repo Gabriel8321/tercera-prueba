@@ -167,7 +167,7 @@ async function renderDataTop() {
                         <div class="card">
                             <img src="${Data.imagen_url}" class="card-img-top" style="padding:20px">
                             <div class="card-body">
-                                <div class="col-sm-6">
+                                <div class="col">
 
                                     <div class="row">
                                         <h2 class="card-title">${Data.nom_p}</h2>
@@ -177,8 +177,8 @@ async function renderDataTop() {
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-sm-4">
-                                            <h5>${Data.precio}</h5>
+                                        <div class="col-sm-8">
+                                            <h5>$${Data.precio}</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -206,73 +206,7 @@ async function renderDataTop() {
         }
     })
 
-    // !!!! VERSION CHATGPT
-    // let template = "";
     
-    // let limite_caracter = 26;
-
-    // let productos = []; // guardará solamente 3 productos reales
-
-    // // Obtener el listado que se utilizara
-    // for (const data of FullData2) {
-    //     const productoCompleto = FullData.find(p => p.codigo_p === data.codigo_p);
-
-    //     if (productoCompleto) {
-    //         productos.push({ ...data, ...productoCompleto });
-    //     }
-
-    //     if (productos.length === 3) {
-    //         break;
-    //     }
-    // }
-
-    // // Generar cards
-    // template += `<div class="row ms-5">`;
-
-    // for (const Data of productos) {
-
-    //     let nombre_producto = Data.nom_p.length > limite_caracter
-    //         ? Data.nom_p.substring(0, limite_caracter) + "..."
-    //         : Data.nom_p;
-
-    //     template += `
-    //         <div class="col-sm-5 ms-5 me-5 mt-3">
-    //             <div class="card">
-    //                 <img src="${Data.imagen_url}" class="card-img-top" style="padding:20px">
-    //                 <div class="card-body">
-    //                     <div class="col-sm-6">
-
-    //                         <div class="row">
-    //                             <h2 class="card-title">${nombre_producto}</h2>
-    //                         </div>
-    //                         <div class="row">
-    //                             <h4 class="card-text">${Data.tipo}</h4>
-    //                         </div>
-
-    //                         <div class="row">
-    //                             <div class="col-sm-2">
-    //                                 <p>${Data.stock}</p>
-    //                             </div>
-    //                             <div class="col-sm-4">
-    //                                 <h5>${Data.precio}</h5>
-    //                             </div>
-    //                         </div>
-    //                     </div>
-    //                     <div class="row">
-    //                         <div class="col-sm-5">
-    //                             <p>${Data.stock}</p>
-    //                         </div>
-    //                         <div class="col-sm-7">
-    //                             <button type="button" class="btn btn-secondary" onclick='ingresar_carro("${Data.nom_p}")'>Pedir</button>
-    //                         </div>
-    //                     </div>
-    //                 </div>
-    //             </div>
-    //         </div>
-    //     `;
-    // }
-
-    // template += `</div>`; // Cerrar la fila
 
     dataSection.innerHTML = template;
 }
