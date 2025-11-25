@@ -413,7 +413,6 @@ async function mostrar_carro(){
 // Mostrar boletas
 async function renderTicket(){
     dataSection.innerHTML = ""    
-    console.log()
     let template = "";
     response = await fetch('/api/vista_compras')
     FullData = await response.json()
@@ -478,16 +477,20 @@ if (page == "/catalogo.html") {
         }
         else{
             for (const pedido of carro) {
-                await fetch('/api/venta', {
+                const res = await fetch('/api/venta', {
                         method: 'POST',
                         headers: {'Content-type': 'application/json'},
                         body: JSON.stringify({ 
                             cantidad: pedido.cantidad, 
-                            fecha_compra: HORA.PLACEHOLDER, 
                             rut: rut ,
                             codigo_p: pedido.id })
             })
-            alert("Se ha realizado su pedido")
+            if (!res.ok) {
+                const msg = await res.text();
+                alert("Error en el pedido: " + msg);
+                return;
+            }
+            alert("Se ha realizado su compra del articulo" + pedido.nom_p)
             }
         }
     })

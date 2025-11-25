@@ -79,7 +79,7 @@ app.post('/api/venta', async (req, res) => {
   }
 
   try {
-    await pool.query('INSERT INTO venta (cantidad, fecha_compra, rut, codigo_p ) VALUES (value1, CURRENT_DATE, value3, value4)', [cantidad, fecha_compra, rut, codigo_p]);
+    await pool.query('INSERT INTO venta (cantidad, fecha_compra, rut, codigo_p ) VALUES ($1, CURRENT_DATE, $2, $3)', [cantidad, rut, codigo_p]);
     res.send('compra realizada');
   } catch (err) {
     console.error(err);
