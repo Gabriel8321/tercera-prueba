@@ -330,8 +330,13 @@ async function ingresar_carro(producto){ // Parametros: producto = Valor que se 
 
 async function eliminar_carro(producto){
     const carro = JSON.parse(localStorage.getItem("carro")) || [];
-    
-    
+    const index = carro.findindex(c=>c.id == producto.id)
+    if (carro[index].cantidad == 1){
+        carro.splice(index,1)
+    } else {
+        carro[index].cantidad -=1
+    }
+    localStorage.setItem("carro", json.stringify(carro))
 }
 
 async function mostrar_carro(){
@@ -374,10 +379,23 @@ async function mostrar_carro(){
                                     <div class="col-sm-5">
                                         <p>${c.cantidad} en el carro</p>
                                     </div>
+                        `
+                        if (c.cantidad < Data.stock){  // Agregar boton de "añadir" unicamente cuando hay más existencias.
+                            template+=`
                                     <div class="col-sm-7">
                                         <button type="button" class="btn btn-secondary" onclick='eliminar_carro(${JSON.stringify(Data)})'>Eliminar</button>
                                         <button type="button" class="btn btn-secondary" onclick='ingresar_carro(${JSON.stringify(Data)})'>Agregar</button>
                                     </div>
+                                    `
+                        }
+                        else{
+                            template+=`
+                                    <div class="col-sm-7">
+                                        <button type="button" class="btn btn-secondary" onclick='eliminar_carro(${JSON.stringify(Data)})'>Eliminar</button>
+                                    </div>
+                                    `                            
+                        }
+                        template+=`
                                 </div>
                             </div>
                         </div>
@@ -394,11 +412,46 @@ async function mostrar_carro(){
 
 // Mostrar boletas
 async function renderTicket(){
+    dataSection.innerHTML = ""    
+    console.log()
+    let template = "";
+    response = await fetch('/api/vista_compras')
+    FullData = await response.json()
+    template += `
+        <table class="table table-striped table-hover table-bordered align-middle mt-3">
+            <thead class="table-dark text-center">
+                <tr>
+                    <th>RUT</th>
+                    <th>COMPRADOR</th>
+                    <th>PRODUCTO</th>
+                    <th>CANTIDAD</th>
+                    <th>PRECIO TOTAL</th>
+                    <th>FECHA</th>
+                </tr>
+            </thead>
+            <tbody>
+    `;
 
+    FullData.forEach(data => {
+        template += `
+            <tr>
+                <td>${data.rut}</td>
+                <td>${data.comprador}</td>
+                <td>${data.nom_p}</td>
+                <td class="text-center">${data.cantidad}</td>
+                <td class="text-end">$${data.total}</td>
+                <td>${data.fecha_compra}</td>
+            </tr>
+        `;
+    });
+
+    template += `
+            </tbody>
+        </table>
+    `;
+    dataSection.innerHTML = template
 }
 
-
-// Agregar un nuevo pedido
 
 // Ejecutar funciones especificas por ingreso de pagina.
 const page = window.location.pathname

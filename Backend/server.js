@@ -63,7 +63,7 @@ app.get('/api/venta', async (req, res) => {
 // Obtener facturas
 app.get('/api/vista_compras', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM producto ORDER BY fecha_compra DESC');
+    const result = await pool.query('SELECT * FROM vista_compras ORDER BY v.fecha_compra DESC');
     res.json(result.rows);
   } catch (err) {
     console.error(err);
