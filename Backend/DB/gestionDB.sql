@@ -9,7 +9,7 @@ select c.rut as rut,
 from venta v inner join cliente c on c.rut = v.rut
 inner join producto p on p.codigo_p = v.codigo_p
 group by c.rut, c.nom_c, c.apell_c, p.nom_p, v.cantidad, v.fecha_compra
-order by c.rut;
+order by v.fecha_compra;
 
 select * from vista_compras;
 
