@@ -163,7 +163,7 @@ async function renderDataTop() {
                     nombre_producto = Data.nom_p
                 }
                 template += `
-                    <div class="col-sm-5 ms-5 me-5 mt-3">
+                    <div class="col-sm-2 ms-5 me-5 mt-3">
                         <div class="card">
                             <img src="${Data.imagen_url}" class="card-img-top" style="padding:20px">
                             <div class="card-body">
@@ -330,13 +330,13 @@ async function ingresar_carro(producto){ // Parametros: producto = Valor que se 
 
 async function eliminar_carro(producto){
     const carro = JSON.parse(localStorage.getItem("carro")) || [];
-    const index = carro.findindex(c=>c.id == producto.id)
+    const index = carro.findIndex(c=>c.id == producto.codigo_p)
     if (carro[index].cantidad == 1){
         carro.splice(index,1)
     } else {
         carro[index].cantidad -=1
     }
-    localStorage.setItem("carro", json.stringify(carro))
+    localStorage.setItem("carro", JSON.stringify(carro))
 }
 
 async function mostrar_carro(){
@@ -370,8 +370,8 @@ async function mostrar_carro(){
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-sm-4">
-                                            <h5>${Data.precio*c.cantidad} Precio total</h5>
+                                        <div class="col-sm-8">
+                                            <h5>$${Data.precio*c.cantidad} Precio total</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -414,7 +414,7 @@ async function mostrar_carro(){
 async function renderTicket(){
     dataSection.innerHTML = ""    
     let template = "";
-    response = await fetch('/api/vista_compras')
+    response = await fetch('/api/vista')
     FullData = await response.json()
     template += `
         <table class="table table-striped table-hover table-bordered align-middle mt-3">
@@ -432,6 +432,7 @@ async function renderTicket(){
     `;
 
     FullData.forEach(data => {
+        fecha = new Date(data.fecha_compra).toLocaleDateString()
         template += `
             <tr>
                 <td>${data.rut}</td>
@@ -439,7 +440,7 @@ async function renderTicket(){
                 <td>${data.nom_p}</td>
                 <td class="text-center">${data.cantidad}</td>
                 <td class="text-end">$${data.total}</td>
-                <td>${data.fecha_compra}</td>
+                <td>${fecha}</td>
             </tr>
         `;
     });
@@ -499,35 +500,3 @@ if (page == "/catalogo.html") {
 } else if (page == "/facturas.html"){
     renderTicket()
 }
-
-// Carga los datos de la vista y los pone en la tabla creada en factura.html
-async function cargarDatos() {
-    try {
-        const resp = await fetch('/Api/vista');
-        const datos = await resp.json();
-        console.log(datos);
-
-        const tbody = document.getElementById("tablaDatos");
-        tbody.innerHTML = "";
-
-        datos.forEach(fila => {
-            const tr = document.createElement("tr");
-
-            tr.innerHTML = `
-                <td>${fila.rut}</td>
-                <td>${fila.comprador}</td>
-                <td>${fila.nom_p}</td>
-                <td>${fila.cantidad}</td>
-                <td>${fila.total}</td>
-                <td>${fila.fecha_compra}</td>
-            `;
-
-            tbody.appendChild(tr);
-        });
-
-    } catch (err) {
-        console.error("Error cargando los datos:", err);
-    }
-}
-
-cargarDatos();

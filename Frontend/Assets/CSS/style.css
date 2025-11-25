@@ -18,14 +18,3 @@ body{
 .ingreso_carro{
     float: right;
 }
-
-table {
-    width: 800px;
-    border-collapse: collapse;
-}
-
-th, td {
-    border: 1px solid;
-    padding: 8px;
-    text-align: center;
-}

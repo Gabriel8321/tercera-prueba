@@ -60,16 +60,7 @@ app.get('/api/venta', async (req, res) => {
   }
 });
 
-// Obtener facturas
-app.get('/api/vista_compras', async (req, res) => {
-  try {
-    const result = await pool.query('SELECT * FROM vista_compras ORDER BY v.fecha_compra DESC');
-    res.json(result.rows);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send('Error al consultar la base de datos');
-  }
-});
+
 
 // Realizar una compra
 app.post('/api/venta', async (req, res) => {
@@ -77,7 +68,7 @@ app.post('/api/venta', async (req, res) => {
   if (!cantidad || !fecha_compra || !rut || !codigo_p) {
     return res.status(400).send('Faltan datos');
   }
-
+  
   try {
     await pool.query('INSERT INTO venta (cantidad, fecha_compra, rut, codigo_p ) VALUES ($1, CURRENT_DATE, $2, $3)', [cantidad, rut, codigo_p]);
     res.send('compra realizada');
@@ -87,7 +78,8 @@ app.post('/api/venta', async (req, res) => {
   }
 });
 
-// Para mostrar la vista
+
+// Obtener facturas
 app.get('/Api/vista', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM vista_compras');
