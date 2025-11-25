@@ -500,4 +500,34 @@ if (page == "/catalogo.html") {
     renderTicket()
 }
 
+// Carga los datos de la vista y los pone en la tabla creada en factura.html
+async function cargarDatos() {
+    try {
+        const resp = await fetch('/Api/vista');
+        const datos = await resp.json();
+        console.log(datos);
 
+        const tbody = document.getElementById("tablaDatos");
+        tbody.innerHTML = "";
+
+        datos.forEach(fila => {
+            const tr = document.createElement("tr");
+
+            tr.innerHTML = `
+                <td>${fila.rut}</td>
+                <td>${fila.comprador}</td>
+                <td>${fila.nom_p}</td>
+                <td>${fila.cantidad}</td>
+                <td>${fila.total}</td>
+                <td>${fila.fecha_compra}</td>
+            `;
+
+            tbody.appendChild(tr);
+        });
+
+    } catch (err) {
+        console.error("Error cargando los datos:", err);
+    }
+}
+
+cargarDatos();

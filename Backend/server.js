@@ -87,6 +87,17 @@ app.post('/api/venta', async (req, res) => {
   }
 });
 
+// Para mostrar la vista
+app.get('/Api/vista', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM vista_compras');
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error al obtener los datos.");
+  }
+});
+
 // Servir el frontend
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'frontend', 'index.html'));
