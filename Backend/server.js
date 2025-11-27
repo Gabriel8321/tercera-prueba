@@ -64,8 +64,8 @@ app.get('/api/venta', async (req, res) => {
 
 // Realizar una compra
 app.post('/api/venta', async (req, res) => {
-  const { cantidad, fecha_compra, rut, codigo_p } = req.body;
-  if (!cantidad || !fecha_compra || !rut || !codigo_p) {
+  const { cantidad, rut, codigo_p } = req.body;
+  if (!cantidad || !rut || !codigo_p) {
     return res.status(400).send('Faltan datos');
   }
   
