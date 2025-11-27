@@ -409,14 +409,13 @@ if (page == "/catalogo.html") {
     const form = document.getElementById('datos_usuario')
     form.addEventListener('submit', async e => {
         e.preventDefault();
-        const rut = document.getElementById('rut').value
+        const rut = document.getElementById('id').value
         const nombre = document.getElementById('user_name').value
         const apellido = document.getElementById('user_lastname').value
-        const database = (await fetch('/api/cliente'))
-        const db = await database.json()
+        const db = (await fetch('/api/cliente')).json()
         const carro = JSON.parse(localStorage.getItem("carro")) || [] // Esta linea permite cargar el carro actual, para evitar sobreescribir sobre la existente
-        console.log(db)
-        const cliente = db.find(user => user.rut == rut && user.nom_c == nombre && user.apell_c == apellido);
+        
+        const cliente = db.find(user => user.rut == rut && user.nombre == nombre && user.apellido == apellido);
     
         if (!cliente){
             alert("Verificar datos de usuario")
@@ -437,7 +436,7 @@ if (page == "/catalogo.html") {
                 alert("Error en el pedido: " + msg);
                 return;
             }
-            alert("Se ha realizado su compra del articulo " + pedido.nombre)
+            alert("Se ha realizado su compra del articulo" + pedido.nom_p)
             }
         }
     })
