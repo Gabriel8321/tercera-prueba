@@ -296,7 +296,7 @@ async function mostrar_carro(){
                 }
                 template += `
                     <div class="col-sm-3 ms-5 me-5 mt-3">
-                        <article class="card">
+                        <div class="card">
                             <img src="${Data.imagen_url}" class="card-img-top" style="padding:20px">
                             <div class="card-body">
                                 <div class="col-sm-6">
@@ -337,7 +337,7 @@ async function mostrar_carro(){
                         template+=`
                                 </div>
                             </div>
-                        </article>
+                        </div>
                     </div>
                     `
                 if (i == 2) {
