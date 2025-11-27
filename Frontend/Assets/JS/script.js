@@ -25,12 +25,14 @@ async function renderData() {
     }
     template += `
         <div class="col-sm-3 ms-4 me-4 mt-4">
-            <div class="card">
+            <article class="card">
                 <img src="${Data.imagen_url}" class="card-img-top" style="padding:20px">
-                <div class="card-body">
+                <header class="card-body">
                     <div class="row">
                         <h2 class="card-title">${nombre_producto}</h2>
                     </div>
+                </header>
+                <section class="card-body">
                     <div class="row">
                         <h4 class="card-text">${Data.tipo}</h4>
                     </div>
@@ -48,8 +50,8 @@ async function renderData() {
                             <button type="button" class="btn btn-secondary  ingreso_carro" onclick='ingresar_carro(${JSON.stringify(Data)})'>Pedir</button>
                         </div>
                     </div>
-                </div>
-            </div>
+                </section>
+            </article>
         </div>
     `
     if (i==2){
@@ -96,9 +98,9 @@ async function renderDataWithFilters(filtros, tipos) {
         }
         template += `
         <div class="col-sm-5 ms-5 me-5 mt-3">
-            <div class="card">
+            <article class="card">
                 <img src="${Data.imagen_url}" class="card-img-top" style="padding:20px">
-                <div class="card-body">
+                <header class="card-body">
                     <div class="col-sm-6">
 
                         <div class="row">
@@ -107,7 +109,8 @@ async function renderDataWithFilters(filtros, tipos) {
                         <div class="row">
                             <h4 class="card-text">${Data.tipo}</h4>
                         </div>
-
+                </header>
+                <section class="card-body">
                         <div class="row">
                             <div class="col-sm-4">
                                 <h5>${Data.precio}</h5>
@@ -122,8 +125,8 @@ async function renderDataWithFilters(filtros, tipos) {
                             <button type="button" class="btn btn-secondary" onclick='ingresar_carro(${JSON.stringify(Data)}); console.log(${JSON.stringify(Data)})'>Pedir</button>
                         </div>
                     </div>
-                </div>
-            </div>
+                </section>
+            </article>
         </div>
     `
         if (i==2){
@@ -164,14 +167,16 @@ async function renderDataTop() {
                 }
                 template += `
                     <div class="col-sm-2 ms-5 me-5 mt-3">
-                        <div class="card">
+                        <article class="card">
                             <img src="${Data.imagen_url}" class="card-img-top" style="padding:20px">
-                            <div class="card-body">
+                            <header class="card-body">
                                 <div class="col">
 
                                     <div class="row">
                                         <h2 class="card-title">${Data.nom_p}</h2>
                                     </div>
+                            </header>
+                            <section class="card-body">
                                     <div class="row">
                                         <h4 class="card-text">${Data.tipo}</h4>
                                     </div>
@@ -186,12 +191,12 @@ async function renderDataTop() {
                                     <div class="col-sm-5">
                                         <p>${Data.stock} restantes</p>
                                     </div>
-                                    <div class="col-sm-7">
+                                    <footer class="col-sm-7">
                                         <button type="button" class="btn btn-secondary" onclick='ingresar_carro(${JSON.stringify(Data)})'>Pedir</button>
-                                    </div>
+                                    </footer>
                                 </div>
-                            </div>
-                        </div>
+                            </section>
+                        </article>
                     </div>
                     `
                     if (i==2){
@@ -296,14 +301,15 @@ async function mostrar_carro(){
                 }
                 template += `
                     <div class="col-sm-3 ms-5 me-5 mt-3">
-                        <div class="card">
+                        <article class="card">
                             <img src="${Data.imagen_url}" class="card-img-top" style="padding:20px">
-                            <div class="card-body">
+                            <header class="card-body">
                                 <div class="col-sm-6">
-
                                     <div class="row">
                                         <h2 class="card-title">${Data.nom_p}</h2>
                                     </div>
+                            </header>
+                            <section class="card-body">
                                     <div class="row">
                                         <h4 class="card-text">${Data.tipo}</h4>
                                     </div>
@@ -321,23 +327,23 @@ async function mostrar_carro(){
                         `
                         if (c.cantidad < Data.stock){  // Agregar boton de "añadir" unicamente cuando hay más existencias.
                             template+=`
-                                    <div class="col-sm-7">
+                                    <footer class="col-sm-7">
                                         <button type="button" class="btn btn-secondary" onclick='eliminar_carro(${JSON.stringify(Data)})'>Eliminar</button>
                                         <button type="button" class="btn btn-secondary" onclick='ingresar_carro(${JSON.stringify(Data)})'>Agregar</button>
-                                    </div>
+                                    </footer>
                                     `
                         }
                         else{
                             template+=`
-                                    <div class="col-sm-7">
+                                    <footer class="col-sm-7">
                                         <button type="button" class="btn btn-secondary" onclick='eliminar_carro(${JSON.stringify(Data)})'>Eliminar</button>
-                                    </div>
+                                    </footer>
                                     `                            
                         }
                         template+=`
                                 </div>
-                            </div>
-                        </div>
+                            </section>
+                        </article>
                     </div>
                     `
                 if (i == 2) {
